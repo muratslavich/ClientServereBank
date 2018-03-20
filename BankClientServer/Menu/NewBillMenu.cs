@@ -6,21 +6,19 @@ using System.Threading.Tasks;
 
 namespace BankClientServer.Menu
 {
-    class CloseBillMenu : AbstractMenu
+    class NewBillMenu : AbstractMenu
     {
-        private int _idBill;
         private int _input;
-        private String _closeBillMenuMessage = "Меню закрытия счета\n" +
-            "Подтвердите закрытие счета\n" +
+        private String _newBillMenuMessage = "Меню создания нового счета\n" +
+            "Подтвердите создание нового счета\n" +
             "1-Да\n" +
             "2-Нет";
 
         public int Input { get => _input; }
 
-        public CloseBillMenu(int idBill)
+        public NewBillMenu()
         {
-            _idBill = idBill;
-            ShowMessage(_closeBillMenuMessage);
+            ShowMessage(_newBillMenuMessage);
             Int32.TryParse(Console.ReadLine(), out _input);
         }
     }

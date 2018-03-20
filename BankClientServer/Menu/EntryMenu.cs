@@ -8,13 +8,18 @@ namespace BankClientServer.Menu
 {
     class EntryMenu : AbstractMenu
     {
-        private const String _entryMessage = "Меню входа\n1-Авторизация\n2-Регистрация\n3-Выход";
+        private int _input;
+        private const String _entryMessage = "Меню входа\n" +
+            "1-Авторизация\n" +
+            "2-Регистрация\n" +
+            "3-Выход";
+
+        public int Input { get => _input; }
 
         public EntryMenu()
         {
-            this.ShowMessage(_entryMessage);
+            ShowMessage(_entryMessage);
+            Int32.TryParse(Console.ReadLine(), out _input);
         }
-
-        
     }
 }

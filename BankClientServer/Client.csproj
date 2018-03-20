@@ -46,12 +46,14 @@
     <Compile Include="Menu\BillListMenu.cs" />
     <Compile Include="Menu\BillMenu.cs" />
     <Compile Include="Menu\CloseBillMenu.cs" />
+    <Compile Include="Menu\NewBillMenu.cs" />
     <Compile Include="Menu\RegistrationMenu.cs" />
     <Compile Include="Menu\TransactionListMenu.cs" />
     <Compile Include="Menu\TransferMenu.cs" />
     <Compile Include="Menu\UserMenu.cs" />
     <Compile Include="RequestGenerator.cs" />
-    <Compile Include="ResponseHandler.cs" />
+    <Compile Include="ResponseHandlers\AuthResponseHandler.cs" />
+    <Compile Include="ResponseHandlers\ResponseHandler.cs" />
     <Compile Include="Services\AuthService.cs" />
     <Compile Include="Services\ClientInputHandler.cs" />
     <Compile Include="MainClient.cs" />

@@ -1,6 +1,7 @@
 ﻿using BankClientServer;
 using BankClientServer.Menu;
 using BankClientServer.Services;
+using BankClientServer.ResponseHandlers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +34,7 @@ namespace Client
                     int index = Int32.Parse(input);
                     switch (index)
                     {
+                        //Authentification
                         case 1:
                             Console.Clear();
                             AuthMenu authMenu = new AuthMenu();
@@ -43,7 +45,8 @@ namespace Client
 
                             try
                             {
-                                _responseHandler = new ResponseHandler(answer);
+                                _responseHandler = new AuthResponseHandler(answer);
+                                _responseHandler.HandleAnswer();
                             }
                             catch (Exception e)
                             {

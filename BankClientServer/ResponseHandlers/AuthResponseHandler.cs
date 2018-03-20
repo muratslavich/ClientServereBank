@@ -1,21 +1,25 @@
 ﻿using BankClientServer.Menu;
+using Client;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Client
+namespace BankClientServer.ResponseHandlers
 {
-    internal class ResponseHandler
+    class AuthResponseHandler : ResponseHandler
     {
-        Char _delimiter = ',';
-        private String[] _answer;
-
-        public ResponseHandler(String answer)
+        public AuthResponseHandler(string answer) : base(answer)
         {
-            _answer = answer.Split(_delimiter);
+        }
 
+        public override void HandleAnswer()
+        {
             switch (int.Parse(_answer[0]))
             {
                 case 1:
-                    HandleAnswer();
+                    UserMenu userMenu = new UserMenu();
                     break;
 
                 case 2:
@@ -26,13 +30,8 @@ namespace Client
 
                 default:
                     throw new Exception("Неизвестный ответ от сервера");
-                    
-            }
-        }
 
-        private void HandleAnswer()
-        {
-            UserMenu userMenu = new UserMenu();
+            }
         }
     }
 }

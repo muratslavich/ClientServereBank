@@ -12,6 +12,8 @@ namespace BankClientServer.Menu
         private String _password;
         private String[] _input = new String[2];
 
+        public String[] Input { get => _input; }
+
         public AuthMenu()
         {
             ShowMessage("Введите логин");
@@ -22,8 +24,5 @@ namespace BankClientServer.Menu
             Input[0] = _login;
             Input[1] = _password;
         }
-
-        public string[] Input { get => _input; }
-        
     }
 }

@@ -57,7 +57,7 @@ namespace Server
                     Console.WriteLine("Text received : {0}", data);
 
                     // Echo the data back to the client.  
-                    byte[] msg = Encoding.ASCII.GetBytes("1,login");
+                    byte[] msg = Encoding.ASCII.GetBytes("2,login");
 
                     handler.Send(msg);
                     Console.WriteLine("send");

@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Client.MainClient" Collapsed="true">
+    <Position X="5.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>MainClient.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Client.ClientInputHandler" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\ClientInputHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Client.SocketClient" Collapsed="true">
+    <Position X="7" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAAAAACAAAAAAAAgAAAAAAAAQQEAAAAA=</HashCode>
+      <FileName>SocketClient.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BankClientServer.Menu.AbstractMenu" Collapsed="true">
+    <Position X="1.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Menu\AbstractMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BankClientServer.Menu.AuthMenu" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAIAAAAAAAAAAAAAEAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>Menu\AuthMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BankClientServer.Menu.EntryMenu" Collapsed="true">
+    <Position X="2.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Menu\EntryMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BankClientServer.Services.AuthService" Collapsed="true">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAIAAIAAAAAAAAAAAAAAAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\AuthService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Client.ResponseHandler" Collapsed="true">
+    <Position X="5.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ResponseHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BankClientServer.RequestGenerator" Collapsed="true">
+    <Position X="7" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>RequestGenerator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

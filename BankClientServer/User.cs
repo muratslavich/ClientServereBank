@@ -13,7 +13,7 @@ using System.Threading.Tasks;
  * 
  * */
 
-namespace BankClientServer
+namespace Client
 {
     class User
     {

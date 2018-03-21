@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BankClientServer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,19 +9,36 @@ namespace Client
     {
         Char _delimiter = ',';
         private String[] _answer;
-        private List<String> _answerList;
+        private List<Bill> _answerList;
 
         public string[] Answer { get => _answer; private set => _answer = value; }
-        public List<string> AnswerList { get => _answerList; private set => _answerList = value; }
+        public List<Bill> AnswerList { get => _answerList; private set => _answerList = value; }
 
         public void ResponseHandlerToArray(String answer)
         {
             Answer = answer.Split(_delimiter);
         }
 
-        public void ResposeHandlerToList(String answer)
+        public List<String> ResposeHandlerToList(String answer)
         {
-            AnswerList = answer.Split(_delimiter).ToList();
+            List<String> listBill = answer.Split(_delimiter).ToList();
+            return listBill;
+        }
+
+        public void ResponseHandlerListToBill(List<String> bills)
+        {
+            foreach (var item in bills)
+            {
+                Bill bill = new Bill();
+                String[] separetedBill = item.Split(';');
+
+                bill.IdBill = Int32.Parse(separetedBill[0]);
+                bill.Login = separetedBill[1];
+                bill.CreateDate = DateTime.Parse(separetedBill[2]);
+                bill.Balance = Decimal.Parse(separetedBill[3]);
+
+                AnswerList.Add(bill);
+            }
         }
 
     }

@@ -8,8 +8,6 @@ namespace Client
 {
     internal class ClientProgramm
     {
-        //private String _answer;
-        //private String[] _input;
         private User _user;
 
         private ClientInputHandler<String[]> _authService;
@@ -69,11 +67,45 @@ namespace Client
                 }
             }
 
-            // Registration process                     ???
+            // Registration process
             else if (_entryMenu.Input == 2)
             {
+                // create reg menu
                 _registrationMenu = new RegistrationMenu();
+
+                // get user input from reg menu, input[name, surname, birthDate, login, password]
                 String[] input = _registrationMenu.Input;
+
+                // send user input to server
+                _registrationService = new RegistrationService(input, SocketClient._sender);
+                _registrationService.SendMessageToSocket();
+
+                // recive mess from server
+                try
+                {
+                    _registrationService.RecieveMessageFromSocket();
+                }
+                catch (InvalidOperationException regExc)
+                {
+                    Console.WriteLine(regExc.Message);
+                }
+
+                // positive registration
+                _user = new User(input[0], input[1], DateTime.Parse(input[3]), input[4]);
+
+                try
+                {
+                    UserMenuProgramm();
+                }
+                catch (InvalidOperationException retExc)
+                {
+                    Console.Clear();
+                    Console.WriteLine(retExc.Message);
+                }
+                finally
+                {
+                    UserMenuProgramm();
+                }
             }
 
             // Exit app
@@ -116,13 +148,20 @@ namespace Client
 
                 // output billlist
                 _billListMenu = new BillListMenu(billList);
-                BillListMenuProgramm(billList);
+                try
+                {
+                    BillListMenuProgramm(billList);
+                }
+                catch (InvalidOperationException erIn)
+                {
+                    Console.WriteLine(erIn.Message);
+                }
             }
 
             // Create new Bill
             if (_userMenu.Input == 2)
             {
-
+                CreateBillProgramm();
             }
 
             // Sign out
@@ -154,7 +193,7 @@ namespace Client
                 {
                     if (input == item.IdBill)
                     {
-
+                        BillMenuProgramm();
                     }
                     else
                     {
@@ -162,6 +201,16 @@ namespace Client
                     }
                 }
             }
+        }
+
+        private void CreateBillProgramm()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void BillMenuProgramm()
+        {
+            throw new NotImplementedException();
         }
     }
 }

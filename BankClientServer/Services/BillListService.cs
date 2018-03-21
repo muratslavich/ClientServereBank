@@ -20,15 +20,15 @@ using System.Threading.Tasks;
 
 namespace BankClientServer.Services
 {
-    class BillListService : ClientInputHandler<List<String>>
+    class BillListService : ClientInputHandler<List<Bill>>
     {
         private String _userLogin;
-        private List<String> _answer;
+        private List<Bill> _answer;
         private Socket _sender;
         private RequestGenerator _requestGenerator;
         private ResponseHandler _responseHandler;
 
-        public override List<string> Answer { get => _answer; }
+        public override List<Bill> Answer { get => _answer; }
 
         public BillListService(User user, Socket sender)
         {
@@ -48,7 +48,9 @@ namespace BankClientServer.Services
         {
             String answer = SocketClient.RecieveMessage(_sender);
             _responseHandler = new ResponseHandler();
-            _responseHandler.ResposeHandlerToList(answer);
+
+            List<String> billList = _responseHandler.ResposeHandlerToList(answer);
+            _responseHandler.ResponseHandlerListToBill(billList);
             _answer = _responseHandler.AnswerList;
 
             if (_answer.Count == 0)

@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BankClientServer.Menu
 {
-    class BillListMenu : AbstractMenu
+    class BillListMenu : AbstractMenu<int>
     {
         private List<String> _billList;
         private int _input;
@@ -14,11 +11,12 @@ namespace BankClientServer.Menu
             "1-Введите Id счета для выбора\n" +
             "2-Возврат в Меню Пользователя";
 
-        public int Input { get => _input; }
+        public override int Input { get => _input; }
 
         public BillListMenu(List<String> billList)
         {
             _billList = billList;
+            Console.Clear();
             ShowMessage(_billListMenuMessage);
             foreach (var item in _billList)
             {

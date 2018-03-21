@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace BankClientServer
 {
@@ -34,6 +31,15 @@ namespace BankClientServer
             //добавляем последний элемент
             sb.Append(train[train.Length-1]);
 
+            String request = sb.ToString();
+            return request;
+        }
+
+        // overload
+        public String GenerateRequest(int req, String train)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(req + "," + train);
             String request = sb.ToString();
             return request;
         }

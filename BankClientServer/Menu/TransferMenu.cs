@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace BankClientServer.Menu
 {
-    class TransferMenu : AbstractMenu
+    class TransferMenu : AbstractMenu<String[]>
     {
         private int _amount;
         private int _senderIdBill;
         private int _targetIdBill;
         private String[] _transferPackage = new String[3];
 
-        public String[] TransferPackage { get => _transferPackage; }
+        public override String[] Input { get => _transferPackage; }
 
         public TransferMenu(int senderIdBill)
         {

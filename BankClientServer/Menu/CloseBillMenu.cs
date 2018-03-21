@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BankClientServer.Menu
 {
-    class CloseBillMenu : AbstractMenu
+    class CloseBillMenu : AbstractMenu<int>
     {
         private int _idBill;
         private int _input;
@@ -15,7 +11,7 @@ namespace BankClientServer.Menu
             "1-Да\n" +
             "2-Нет";
 
-        public int Input { get => _input; }
+        public override int Input { get => _input; }
 
         public CloseBillMenu(int idBill)
         {

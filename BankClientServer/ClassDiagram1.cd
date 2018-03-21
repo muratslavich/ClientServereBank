@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Client.MainClient" Collapsed="true">
-    <Position X="5.25" Y="0.5" Width="1.5" />
+    <Position X="24.25" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
       <FileName>MainClient.cs</FileName>
@@ -10,57 +10,162 @@
   <Class Name="Client.ClientInputHandler" Collapsed="true">
     <Position X="0.5" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAgAAAAAAAAAAAA=</HashCode>
       <FileName>Services\ClientInputHandler.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Client.SocketClient" Collapsed="true">
-    <Position X="7" Y="1.5" Width="1.5" />
+    <Position X="24.25" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAEAAAAAAAAAACAAAAAAAAgAAAAAAAAQQEAAAAA=</HashCode>
       <FileName>SocketClient.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BankClientServer.Menu.AbstractMenu" Collapsed="true">
-    <Position X="1.75" Y="0.5" Width="1.5" />
+    <Position X="11.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Menu\AbstractMenu.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BankClientServer.Menu.AuthMenu" Collapsed="true">
-    <Position X="0.5" Y="1.75" Width="1.5" />
+    <Position X="1.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAIAAAAAAAAAAAAAEAAAAAAAAAAAIAAAAAA=</HashCode>
       <FileName>Menu\AuthMenu.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BankClientServer.Menu.EntryMenu" Collapsed="true">
-    <Position X="2.75" Y="1.75" Width="1.5" />
+    <Position X="6" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAIAAAAACAAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Menu\EntryMenu.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BankClientServer.Services.AuthService" Collapsed="true">
     <Position X="0.5" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAEAAAIAAIAAAAAAAAAAAAAAAAgAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAEAAAYAAIAAAAAAAAAAAAAAEAgAAAAAAgAAAAA=</HashCode>
       <FileName>Services\AuthService.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Client.ResponseHandler" Collapsed="true">
-    <Position X="5.25" Y="1.5" Width="1.5" />
+    <Position X="29.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAQAAAAAgAAAAAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
       <FileName>ResponseHandler.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BankClientServer.RequestGenerator" Collapsed="true">
-    <Position X="7" Y="0.5" Width="1.5" />
+    <Position X="27.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>RequestGenerator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Client.ClientProgramm" Collapsed="true">
+    <Position X="26" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACEAAAA=</HashCode>
+      <FileName>ClientProgramm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BankClientServer.Menu.BillListMenu" Collapsed="true">
+    <Position X="8.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAAIAAAAAAEAAAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>Menu\BillListMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BankClientServer.Menu.BillMenu" Collapsed="true">
+    <Position X="12.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAACAAAAAAEAAAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Menu\BillMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BankClientServer.Menu.CloseBillMenu" Collapsed="true">
+    <Position X="17.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAAAAAAAAAEAAAIAAAAAAAAAIAAAA=</HashCode>
+      <FileName>Menu\CloseBillMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BankClientServer.Menu.NewBillMenu" Collapsed="true">
+    <Position X="21.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAAAQAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Menu\NewBillMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BankClientServer.Menu.RegistrationMenu" Collapsed="true">
+    <Position X="3.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAIAAAAAIIAAAAAAAAAAAAEAAAAAAAAAAAIAAEAAA=</HashCode>
+      <FileName>Menu\RegistrationMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BankClientServer.Menu.TransactionListMenu" Collapsed="true">
+    <Position X="10.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>Menu\TransactionListMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BankClientServer.Menu.TransferMenu" Collapsed="true">
+    <Position X="15" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BQAAAAAAAAAAAAAAAAAAAAAQAAAgAAAAAABAAAAAAAA=</HashCode>
+      <FileName>Menu\TransferMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BankClientServer.Menu.UserMenu" Collapsed="true">
+    <Position X="19.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAIAAAAAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Menu\UserMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BankClientServer.Services.BillListService" Collapsed="true">
+    <Position X="24.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\BillListService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BankClientServer.Services.CloseBillService" Collapsed="true">
+    <Position X="27.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\CloseBillService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BankClientServer.Services.CreateBillService" Collapsed="true">
+    <Position X="29.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\CreateBillService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BankClientServer.Services.RegistrationService" Collapsed="true">
+    <Position X="26" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\RegistrationService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BankClientServer.Services.TransactionListService" Collapsed="true">
+    <Position X="26" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\TransactionListService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BankClientServer.Services.TransferService" Collapsed="true">
+    <Position X="27.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\TransferService.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

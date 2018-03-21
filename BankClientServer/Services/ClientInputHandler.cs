@@ -5,8 +5,10 @@ using System.Text;
 
 namespace Client
 {
-    abstract class ClientInputHandler
+    abstract class ClientInputHandler<T>
     {
+        public abstract T Answer { get; }
         public abstract void SendMessageToSocket();
+        public abstract void RecieveMessageFromSocket();
     }
 }

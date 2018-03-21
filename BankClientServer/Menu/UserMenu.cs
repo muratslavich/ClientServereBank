@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BankClientServer.Menu
 {
-    class UserMenu : AbstractMenu
+    class UserMenu : AbstractMenu<int>
     {
         private int _input;
         private const String _userMenuMessage = "Меню пользователя\n" +
@@ -14,7 +14,7 @@ namespace BankClientServer.Menu
             "2-Открыть новый счет\n" +
             "3-Выход";
 
-        public int Input { get => _input; }
+        public override int Input { get => _input; }
 
         public UserMenu()
         {

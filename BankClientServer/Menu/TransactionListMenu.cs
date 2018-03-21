@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace BankClientServer.Menu
 {
-    class TransactionListMenu : AbstractMenu
+    class TransactionListMenu : AbstractMenu<int>
     {
         private List<String> _transactionList;
         private String _transactionListMessage = "Меню список транзакций";
+
+        public override int Input { get; }
 
         public TransactionListMenu(List<String> trasactionList)
         {

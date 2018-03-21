@@ -37,11 +37,12 @@ namespace Server
                 listener.Listen(10);
 
                 // Start listening for connections.  
-                while (true)
-                {
+                
                     Console.WriteLine("Waiting for a connection...");
                     // Program is suspended while waiting for an incoming connection.  
                     Socket handler = listener.Accept();
+                while (true)
+                {
                     data = null;
 
                     // An incoming connection needs to be processed.  
@@ -57,12 +58,12 @@ namespace Server
                     Console.WriteLine("Text received : {0}", data);
 
                     // Echo the data back to the client.  
-                    byte[] msg = Encoding.ASCII.GetBytes("2,login");
+                    byte[] msg = Encoding.ASCII.GetBytes("1,login");
 
                     handler.Send(msg);
-                    Console.WriteLine("send");
-                    handler.Shutdown(SocketShutdown.Both);
-                    handler.Close();
+                    Console.WriteLine("send", Encoding.ASCII.GetString(msg));
+                    //handler.Shutdown(SocketShutdown.Both);
+                    //handler.Close();
                 }
 
             }

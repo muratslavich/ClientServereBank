@@ -1,21 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BankClientServer.Menu
 {
-    class AuthMenu : AbstractMenu
+    class AuthMenu : AbstractMenu<String[]>
     {
         private String _login;
         private String _password;
         private String[] _input = new String[2];
 
-        public String[] Input { get => _input; }
+        public override String[] Input { get => _input; }
 
         public AuthMenu()
         {
+            Console.Clear();
             ShowMessage("Введите логин");
             _login = Console.ReadLine();
             ShowMessage("Введите пароль");

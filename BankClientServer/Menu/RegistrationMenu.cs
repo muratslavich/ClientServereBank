@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BankClientServer.Menu
 {
-    class RegistrationMenu : AbstractMenu
+    class RegistrationMenu : AbstractMenu<String[]>
     {
         private String _name;
         private String _surname;
@@ -15,10 +15,11 @@ namespace BankClientServer.Menu
         private String _password;
         private String[] _input = new String[5];
 
-        public string[] Input { get => _input; }
+        public override String[] Input { get => _input; }
 
         public RegistrationMenu()
         {
+            Console.Clear();
             Console.WriteLine("Введите ваше Имя");
             _name = Console.ReadLine();
             _input[0] = _name;

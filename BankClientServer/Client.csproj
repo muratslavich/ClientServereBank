@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClientProgramm.cs" />
     <Compile Include="Menu\AuthMenu.cs" />
     <Compile Include="Menu\BillListMenu.cs" />
     <Compile Include="Menu\BillMenu.cs" />
@@ -52,15 +53,21 @@
     <Compile Include="Menu\TransferMenu.cs" />
     <Compile Include="Menu\UserMenu.cs" />
     <Compile Include="RequestGenerator.cs" />
-    <Compile Include="ResponseHandlers\AuthResponseHandler.cs" />
-    <Compile Include="ResponseHandlers\ResponseHandler.cs" />
+    <Compile Include="ResponseHandler.cs" />
     <Compile Include="Services\AuthService.cs" />
+    <Compile Include="Services\BillListService.cs" />
     <Compile Include="Services\ClientInputHandler.cs" />
     <Compile Include="MainClient.cs" />
     <Compile Include="Menu\AbstractMenu.cs" />
     <Compile Include="Menu\EntryMenu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\CloseBillService.cs" />
+    <Compile Include="Services\CreateBillService.cs" />
+    <Compile Include="Services\RegistrationService.cs" />
+    <Compile Include="Services\TransactionListService.cs" />
+    <Compile Include="Services\TransferService.cs" />
     <Compile Include="SocketClient.cs" />
+    <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

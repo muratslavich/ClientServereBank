@@ -11,24 +11,25 @@ using System.Threading.Tasks;
  * 
  * sending String message[2, name, surname, birthDate, login, password]
  * 
- * recieve String answer[1 || 2, login]
- * 1-complete reg
- * 2-reg error
+ * recieve int answer[5 || 4 || 1 ||]
+ * 5-reg error
+ * 4-existing login error
+ * 1-registration complete
+ * 0-uncorrect answer
  * 
  * constructor(String[] input[], sender)
  * */
 
 namespace BankClientServer.Services
 {
-    class RegistrationService : AbstractHandler<string[]>
+    class RegistrationService : AbstractHandler<int>
     {
-        private string[] _answer;
+        private int _answer;
         private string[] _input;
         private Socket _sender;
         private RequestGenerator _requestGenerator;
-        private ResponseHandler _responseHandler;
 
-        public override string[] Answer
+        public override int Answer
         {
             get { return _answer; }
         }
@@ -42,21 +43,7 @@ namespace BankClientServer.Services
         public override void RecieveMessageFromSocket()
         {
             string answer = SocketClient.RecieveMessage(_sender);
-            _responseHandler = new ResponseHandler();
-            _responseHandler.ResponseHandlerToArray(answer);
-            _answer = _responseHandler.Answer;
-            if (int.Parse(_answer[0]) == 2)
-            {
-                throw new InvalidOperationException("Ошибка регистрации " + _answer[1]);
-            }
-            if (int.Parse(_answer[0]) == 1)
-            {
-                Console.WriteLine("Вход выполнен " + _answer[1]);
-            }
-            else
-            {
-                throw new InvalidOperationException("Неизвестный ответ от сервера");
-            }
+            int.TryParse(answer, out _answer);
         }
 
         public override void SendMessageToSocket()

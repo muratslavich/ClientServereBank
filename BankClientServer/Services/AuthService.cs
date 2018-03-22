@@ -8,25 +8,26 @@ using System.Text;
  * 
  * sending String message[1,login,password]
  * 
- * recieve String answer[1 || 2 || 3, login]
+ * recieve int answer[0 || 1 || 2 || 3]
  * 1-complete auth
  * 2-login error
  * 3-password error
+ * 0-answer error
  * 
  * constructor(String[] input[login, password], sender)
  * */
 
 namespace BankClientServer.Services
 {
-    class AuthService : AbstractHandler<string[]>
+    class AuthService : AbstractHandler<int>
     {
         private string[] _input;
-        private string[] _answer;
+        private int _answer;
         private RequestGenerator _requestGenerator;
         private ResponseHandler _responseHandler;
         private Socket _sender;
 
-        public override string[] Answer
+        public override int Answer
         {
             get
             {
@@ -51,25 +52,7 @@ namespace BankClientServer.Services
         public override void RecieveMessageFromSocket()
         {
             string answer = SocketClient.RecieveMessage(_sender);
-            _responseHandler = new ResponseHandler();
-            _responseHandler.ResponseHandlerToArray(answer);
-            _answer = _responseHandler.Answer;
-            if (int.Parse(_answer[0]) == 2)
-            {
-                throw new InvalidOperationException("Неверный логин " + _answer[1]);
-            }
-            if (int.Parse(_answer[0]) == 3)
-            {
-                throw new InvalidOperationException("Неверный пароль");
-            }
-            if (int.Parse(_answer[0]) == 1)
-            {
-                Console.WriteLine("Вход выполнен " + _answer[1]);
-            }
-            else
-            {
-                throw new InvalidOperationException("Неизвестный ответ от сервера");
-            }
+            int.TryParse(answer, out _answer);
         }
     }
 }

@@ -15,7 +15,7 @@ namespace Client
                 {
                     try
                     {
-                        client.StartProgramm();
+                        client.StartProgram();
                     }
                     catch (InvalidOperationException ie)
                     {

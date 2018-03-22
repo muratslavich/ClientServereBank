@@ -11,9 +11,8 @@ using System.Threading.Tasks;
  * 
  * sending String message[3, login]
  * 
- * recieve List<String[idBill, amount]> || List<String[0]>
+ * recieve List<String[idBill, amount]>
  * output recieve list to Console line-by-line
- * 0-no bills
  * 
  * constructor(user, sender)
  * */
@@ -58,11 +57,6 @@ namespace BankClientServer.Services
             List<string> billList = _responseHandler.ResposeHandlerToList(answer);
             _responseHandler.ResponseHandlerListToBill(billList);
             _answer = _responseHandler.AnswerList;
-
-            if (_answer.Count == 0)
-            {
-                throw new InvalidOperationException("Нет открытых счетов");
-            }
         }
     }
 }

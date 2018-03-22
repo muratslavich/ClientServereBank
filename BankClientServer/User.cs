@@ -17,16 +17,44 @@ namespace Client
 {
     class User
     {
-        private String _name;
-        private String _surname;
+        private string _name;
+        private string _surname;
         private DateTime _birthDate;
-        private String _login;
+        private string _login;
         private string v;
 
-        public string Name { get => _name; private set => _name = value; }
-        public string Surname { get => _surname; private set => _surname = value; }
-        public DateTime BirthDate { get => _birthDate; private set => _birthDate = value; }
-        public string Login { get => _login; set => _login = value; }
+        public string Name
+        {
+            get { return _name; }
+            private set
+            {
+                _name = value;
+            }
+        }
+        public string Surname
+        {
+            get { return _surname; }
+            private set
+            {
+                _surname = value;
+            }
+        }
+        public DateTime BirthDate
+        {
+            get { return _birthDate; }
+            private set
+            {
+                _birthDate = value;
+            }
+        }
+        public string Login
+        {
+            get { return _login; }
+            set
+            {
+                _login = value;
+            }
+        }
 
         public User(string name, string surname, DateTime birthDate, string login)
         {

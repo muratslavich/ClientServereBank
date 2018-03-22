@@ -6,16 +6,22 @@ using System.Threading.Tasks;
 
 namespace BankClientServer.Menu
 {
-    class RegistrationMenu : AbstractMenu<String[]>
+    class RegistrationMenu : AbstractMenu<string[]>
     {
-        private String _name;
-        private String _surname;
-        private String _birthDate;
-        private String _login;
-        private String _password;
-        private String[] _input = new String[5];
+        private string _name;
+        private string _surname;
+        private string _birthDate;
+        private string _login;
+        private string _password;
+        private string[] _input = new string[5];
 
-        public override String[] Input { get => _input; }
+        public override string[] Input
+        {
+            get
+            {
+                return _input;
+            }
+        }
 
         public RegistrationMenu()
         {

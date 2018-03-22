@@ -37,14 +37,14 @@ namespace Client
             int bytesSent = sender.Send(msg);
         }
 
-        public static String RecieveMessage(Socket sender)
+        public static string RecieveMessage(Socket sender)
         {
             // Data buffer for incoming data.  
             byte[] bytes = new byte[1024];
 
             // Receive the response from the remote device.  
             int bytesRec = sender.Receive(bytes);
-            String answer = Encoding.ASCII.GetString(bytes, 0, bytesRec);
+            string answer = Encoding.ASCII.GetString(bytes, 0, bytesRec);
 
             return answer; 
         }

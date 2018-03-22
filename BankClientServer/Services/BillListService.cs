@@ -20,15 +20,21 @@ using System.Threading.Tasks;
 
 namespace BankClientServer.Services
 {
-    class BillListService : ClientInputHandler<List<Bill>>
+    class BillListService : AbstractHandler<List<Bill>>
     {
-        private String _userLogin;
+        private string _userLogin;
         private List<Bill> _answer;
         private Socket _sender;
         private RequestGenerator _requestGenerator;
         private ResponseHandler _responseHandler;
 
-        public override List<Bill> Answer { get => _answer; }
+        public override List<Bill> Answer
+        {
+            get
+            {
+                return _answer;
+            }
+        }
 
         public BillListService(User user, Socket sender)
         {
@@ -39,17 +45,17 @@ namespace BankClientServer.Services
         public override void SendMessageToSocket()
         {
             _requestGenerator = new RequestGenerator();
-            String requestToServer = _requestGenerator.GenerateRequest((int)RequestGenerator.RequestCode.billList, _userLogin);
+            string requestToServer = _requestGenerator.GenerateRequest((int)RequestGenerator.RequestCode.billList, _userLogin);
             byte[] msg = Encoding.ASCII.GetBytes(requestToServer);
             SocketClient.SendMessage(_sender, msg);
         }
 
         public override void RecieveMessageFromSocket()
         {
-            String answer = SocketClient.RecieveMessage(_sender);
+            string answer = SocketClient.RecieveMessage(_sender);
             _responseHandler = new ResponseHandler();
 
-            List<String> billList = _responseHandler.ResposeHandlerToList(answer);
+            List<string> billList = _responseHandler.ResposeHandlerToList(answer);
             _responseHandler.ResponseHandlerListToBill(billList);
             _answer = _responseHandler.AnswerList;
 

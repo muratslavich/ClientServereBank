@@ -18,7 +18,7 @@ namespace Client
             closeBill
         }
 
-        public String GenerateRequest(int req, String[] train)
+        public string GenerateRequest(int req, string[] train)
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(req + ",");
@@ -31,17 +31,22 @@ namespace Client
             //добавляем последний элемент
             sb.Append(train[train.Length-1]);
 
-            String request = sb.ToString();
+            string request = sb.ToString();
             return request;
         }
 
         // overload
-        public String GenerateRequest(int req, String train)
+        public string GenerateRequest(int req, string train)
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(req + "," + train);
-            String request = sb.ToString();
+            string request = sb.ToString();
             return request;
+        }
+
+        public string GenerateRequest(int req, int train)
+        {
+            return req + "," + train;
         }
     }
 }

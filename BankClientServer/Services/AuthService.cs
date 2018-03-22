@@ -18,17 +18,23 @@ using System.Text;
 
 namespace BankClientServer.Services
 {
-    class AuthService : ClientInputHandler<String[]>
+    class AuthService : AbstractHandler<string[]>
     {
-        private String[] _input;
-        private String[] _answer;
+        private string[] _input;
+        private string[] _answer;
         private RequestGenerator _requestGenerator;
         private ResponseHandler _responseHandler;
         private Socket _sender;
 
-        public override String[] Answer { get => _answer; }
+        public override string[] Answer
+        {
+            get
+            {
+                return _answer;
+            }
+        }
 
-        public AuthService(String[] input, Socket sender)
+        public AuthService(string[] input, Socket sender)
         {
             _input = input;
             _sender = sender;
@@ -37,26 +43,26 @@ namespace BankClientServer.Services
         public override void SendMessageToSocket()
         {
             _requestGenerator = new RequestGenerator();
-            String requestToServer = _requestGenerator.GenerateRequest((int)RequestGenerator.RequestCode.auth, _input);
+            string requestToServer = _requestGenerator.GenerateRequest((int)RequestGenerator.RequestCode.auth, _input);
             byte[] msg = Encoding.ASCII.GetBytes(requestToServer);
             SocketClient.SendMessage(_sender, msg);
         }
 
         public override void RecieveMessageFromSocket()
         {
-            String answer = SocketClient.RecieveMessage(_sender);
+            string answer = SocketClient.RecieveMessage(_sender);
             _responseHandler = new ResponseHandler();
             _responseHandler.ResponseHandlerToArray(answer);
             _answer = _responseHandler.Answer;
-            if (Int32.Parse(_answer[0]) == 2)
+            if (int.Parse(_answer[0]) == 2)
             {
                 throw new InvalidOperationException("Неверный логин " + _answer[1]);
             }
-            if (Int32.Parse(_answer[0]) == 3)
+            if (int.Parse(_answer[0]) == 3)
             {
                 throw new InvalidOperationException("Неверный пароль");
             }
-            if (Int32.Parse(_answer[0]) == 1)
+            if (int.Parse(_answer[0]) == 1)
             {
                 Console.WriteLine("Вход выполнен " + _answer[1]);
             }

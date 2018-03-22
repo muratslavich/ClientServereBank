@@ -10,16 +10,24 @@ namespace Client
     {
         private User _user;
 
-        private ClientInputHandler<String[]> _authService;
-        private ClientInputHandler<String[]> _registrationService;
-        private ClientInputHandler<List<Bill>> _billListService;
+        private AbstractHandler<string[]> _authService;
+        private AbstractHandler<string[]> _registrationService;
+        private AbstractHandler<List<Bill>> _billListService;
+        private AbstractHandler<Bill> _createBillService;
+        private AbstractHandler<int> _closeBillService;
+        private AbstractHandler<List<Transaction>> _transactionService;
+        private AbstractHandler<int> _transferService;
 
-        private AbstractMenu<String[]> _authMenu;
+        private AbstractMenu<string[]> _authMenu;
         private AbstractMenu<int> _userMenu;
-        private AbstractMenu<String[]> _registrationMenu;
+        private AbstractMenu<string[]> _registrationMenu;
         private AbstractMenu<int> _entryMenu;
         private AbstractMenu<int> _newBillMenu;
         private AbstractMenu<int> _billListMenu;
+        private AbstractMenu<int> _billMenu;
+        private AbstractMenu<int> _closeBillMenu;
+        private AbstractMenu<int> _transactionMenu;
+        private AbstractMenu<string[]> _transferMenu;
 
         internal void StartProgramm()
         {
@@ -32,7 +40,7 @@ namespace Client
                 _authMenu = new AuthMenu();
 
                 // get user input from auth menu input[login, password]
-                String[] input = _authMenu.Input;
+                string[] input = _authMenu.Input;
 
                 // send user input to creating AuthService constructor for sending to server
                 _authService = new AuthService(input, SocketClient._sender);
@@ -74,7 +82,7 @@ namespace Client
                 _registrationMenu = new RegistrationMenu();
 
                 // get user input from reg menu, input[name, surname, birthDate, login, password]
-                String[] input = _registrationMenu.Input;
+                string[] input = _registrationMenu.Input;
 
                 // send user input to server
                 _registrationService = new RegistrationService(input, SocketClient._sender);
@@ -117,11 +125,10 @@ namespace Client
             // Input error
             else
             {
-                throw new InvalidOperationException("Некоректный ввод");
+                throw new InvalidOperationException("Некоректный ввод ... ");
             }
         }
 
-        // handle UserMenu
         private void UserMenuProgramm()
         {
             _userMenu = new UserMenu();
@@ -167,13 +174,13 @@ namespace Client
             // Sign out
             if (_userMenu.Input == 3)
             {
-                throw new InvalidOperationException("Выход выполнен");
+                StartProgramm();
             }
 
             // Input error
             else
             {
-                throw new InvalidOperationException("Некоректный ввод");
+                throw new InvalidOperationException("Некоректный ввод ... ");
             }
 
         }
@@ -183,9 +190,10 @@ namespace Client
             // get user input idBill || 2-exit
             int input = _billListMenu.Input;
 
+            // return to user menu
             if (input == 2)
             {
-                throw new InvalidOperationException("Выход в меню пользователя");
+                UserMenuProgramm();
             }
             else
             {
@@ -193,7 +201,7 @@ namespace Client
                 {
                     if (input == item.IdBill)
                     {
-                        BillMenuProgramm();
+                        BillMenuProgramm(item);
                     }
                     else
                     {
@@ -205,12 +213,117 @@ namespace Client
 
         private void CreateBillProgramm()
         {
-            throw new NotImplementedException();
+            _newBillMenu = new NewBillMenu();
+
+            if (_newBillMenu.Input == 1)
+            {
+                // create new bill
+                _createBillService = new CreateBillService(_user, SocketClient._sender);
+                UserMenuProgramm();
+            }
+            else if (_newBillMenu.Input == 2)
+            {
+                UserMenuProgramm();
+            }
+            else
+            {
+                throw new InvalidOperationException("Некоректный ввод ... ");
+            }
         }
 
-        private void BillMenuProgramm()
+        private void BillMenuProgramm(Bill bill)
         {
-            throw new NotImplementedException();
+            Console.WriteLine(bill.ToString());
+            _billMenu = new BillMenu();
+
+            // return to user menu
+            if (_billMenu.Input == 4)
+            {
+                UserMenuProgramm();
+            }
+            // transfer
+            else if (_billMenu.Input == 1)
+            {
+                TransferMenuProgramm(bill);
+            }
+            // transaction list
+            else if (_billMenu.Input == 2)
+            {
+                TransactionListMenuProgramm(bill);
+            }
+            // close bill
+            else if (_billMenu.Input == 3)
+            {
+                CloseBillMenuProgramm(bill);
+            }
+            else
+            {
+                throw new InvalidOperationException("Некоректный ввод ... ");
+            }
+
+        }
+
+        private void CloseBillMenuProgramm(Bill bill)
+        {
+            Console.WriteLine(bill.ToString());
+            _closeBillMenu = new CloseBillMenu(bill.IdBill);
+            
+            // closing confirm by user
+            if (_closeBillMenu.Input == 1)
+            {
+                
+                _closeBillService = new CloseBillService(bill, SocketClient._sender);
+
+                // .... negative 
+                if (_closeBillService.Answer == 0)
+                {
+                    _closeBillMenu.ShowMessage("Не удалосьб закрыть счет ... ");
+                    UserMenuProgramm();
+                }
+
+                // .... positive completed closing, return User menu
+                else if (_closeBillService.Answer == 1)
+                {
+                    _closeBillMenu.ShowMessage($"bill {bill.IdBill} закрыт ... ");
+                    UserMenuProgramm();
+                }
+            }
+
+            // closing rejected by user
+            else if (_closeBillMenu.Input == 2)
+            {
+                BillMenuProgramm(bill);
+            }
+
+            // user input is uncorrect - any int except 1 or 2
+            // check for characters make by TryParse in Menu
+            else
+            {
+                throw new InvalidOperationException("Некоректный ввод ... ");
+            }
+        }
+
+        private void TransactionListMenuProgramm(Bill bill)
+        {
+            // get transaction list from server
+            _transactionService = new TransactionListService(bill, SocketClient._sender);
+            
+            List<Transaction> trasactionList = _transactionService.Answer;
+            _transactionMenu = new TransactionListMenu(trasactionList);
+
+            BillMenuProgramm(bill);
+        }
+
+        private void TransferMenuProgramm(Bill bill)
+        {
+            // menu output
+            _transferMenu = new TransferMenu(bill.IdBill);
+            
+            _transferService = new TransferService(_transferMenu.Input, SocketClient._sender);
+            _transferService.SendMessageToSocket();
+            _transferService.RecieveMessageFromSocket();
+
+            BillMenuProgramm(bill);
         }
     }
 }

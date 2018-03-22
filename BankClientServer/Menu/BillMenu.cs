@@ -1,24 +1,29 @@
-﻿using System;
+﻿using Client;
+using System;
 
 namespace BankClientServer.Menu
 {
     class BillMenu : AbstractMenu<int>
     {
-        private int _idBill;
         private int _input;
-        private readonly String _billMenuMessage = "Меню Счета\n" +
+        private readonly string _billMenuMessage = "Меню Счета\n" +
             "1-Перевести\n" +
             "2-Выписка\n" +
             "3-Закрыть Счет\n" +
             "4-Выйти из Меню Счета\n";
 
-        public override int Input { get => _input; }
-
-        public BillMenu(int idBill)
+        public override int Input
         {
-            _idBill = idBill;
+            get
+            {
+                return _input;
+            }
+        }
+
+        public BillMenu()
+        {
             ShowMessage(_billMenuMessage);
-            Int32.TryParse(Console.ReadLine(), out _input);
+            int.TryParse(Console.ReadLine(), out _input);
         }
     }
 }

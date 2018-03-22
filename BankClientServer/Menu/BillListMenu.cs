@@ -8,11 +8,17 @@ namespace BankClientServer.Menu
     {
         private List<Bill> _billList;
         private int _input;
-        private String _billListMenuMessage = "Меню Список счетов\n" +
+        private string _billListMenuMessage = "Меню Список счетов\n" +
             "1-Введите Id счета для выбора\n" +
             "2-Возврат в Меню Пользователя";
 
-        public override int Input { get => _input; }
+        public override int Input
+        {
+            get
+            {
+                return _input;
+            }
+        }
 
         public BillListMenu(List<Bill> billList)
         {
@@ -23,7 +29,7 @@ namespace BankClientServer.Menu
             {
                 ShowMessage(item.ToString());
             }
-            Int32.TryParse(Console.ReadLine(), out _input);
+            int.TryParse(Console.ReadLine(), out _input);
         }
     }
 }

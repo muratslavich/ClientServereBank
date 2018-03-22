@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,18 +9,18 @@ namespace BankClientServer.Menu
 {
     class TransactionListMenu : AbstractMenu<int>
     {
-        private List<String> _transactionList;
-        private String _transactionListMessage = "Меню список транзакций";
+        private List<Transaction> _transactionList;
+        private string _transactionListMessage = "Меню список транзакций ...";
 
         public override int Input { get; }
 
-        public TransactionListMenu(List<String> trasactionList)
+        public TransactionListMenu(List<Transaction> trasactionList)
         {
             _transactionList = trasactionList;
             ShowMessage(_transactionListMessage);
             foreach (var item in _transactionList)
             {
-                ShowMessage(item);
+                ShowMessage(item.ToString());
             }
             Console.ReadLine();
         }

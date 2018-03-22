@@ -2,13 +2,19 @@
 
 namespace BankClientServer.Menu
 {
-    class AuthMenu : AbstractMenu<String[]>
+    class AuthMenu : AbstractMenu<string[]>
     {
-        private String _login;
-        private String _password;
-        private String[] _input = new String[2];
+        private string _login;
+        private string _password;
+        private string[] _input = new string[2];
 
-        public override String[] Input { get => _input; }
+        public override string[] Input
+        {
+            get
+            {
+                return _input;
+            }
+        }
 
         public AuthMenu()
         {

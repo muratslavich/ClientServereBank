@@ -9,14 +9,42 @@ namespace Client
     class Bill
     {
         private int _idBill;
-        private String _login;
+        private string _login;
         private DateTime _createDate;
         private decimal _balance;
 
-        public int IdBill { get => _idBill; set => _idBill = value; }
-        public string Login { get => _login; set => _login = value; }
-        public DateTime CreateDate { get => _createDate; set => _createDate = value; }
-        public decimal Balance { get => _balance; set => _balance = value; }
+        public int IdBill
+        {
+            get { return _idBill; }
+            set
+            {
+                _idBill = value;
+            }
+        }
+        public string Login
+        {
+            get { return _login; }
+            set
+            {
+                _login = value;
+            }
+        }
+        public DateTime CreateDate
+        {
+            get { return _createDate; }
+            set
+            {
+                _createDate = value;
+            }
+        }
+        public decimal Balance
+        {
+            get { return _balance; }
+            set
+            {
+                _balance = value;
+            }
+        }
 
         public override string ToString()
         {
@@ -25,7 +53,7 @@ namespace Client
             sb.Append(Login + ";");
             sb.Append(CreateDate + ";");
             sb.Append(Balance);
-            String bill = sb.ToString();
+            string bill = sb.ToString();
 
             return bill;
         }

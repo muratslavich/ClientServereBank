@@ -5,7 +5,7 @@ using System.Text;
 
 namespace BankClientServer.Services
 {
-    abstract class ClientInputHandler<T>
+    abstract class AbstractHandler<T>
     {
         public abstract T Answer { get; }
         public abstract void SendMessageToSocket();

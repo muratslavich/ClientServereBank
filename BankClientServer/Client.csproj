@@ -57,7 +57,7 @@
     <Compile Include="ResponseHandler.cs" />
     <Compile Include="Services\AuthService.cs" />
     <Compile Include="Services\BillListService.cs" />
-    <Compile Include="Services\ClientInputHandler.cs" />
+    <Compile Include="Services\AbstractHandler.cs" />
     <Compile Include="MainClient.cs" />
     <Compile Include="Menu\AbstractMenu.cs" />
     <Compile Include="Menu\EntryMenu.cs" />
@@ -68,11 +68,11 @@
     <Compile Include="Services\TransactionListService.cs" />
     <Compile Include="Services\TransferService.cs" />
     <Compile Include="SocketClient.cs" />
+    <Compile Include="Transaction.cs" />
     <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

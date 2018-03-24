@@ -1,7 +1,7 @@
 ﻿using Client;
 using System;
 
-namespace BankClientServer.Menu
+namespace Client.Menu
 {
     class BillMenu : AbstractMenu<int>
     {

@@ -1,10 +1,8 @@
 ﻿using Client;
-using System;
+using Client.Utils;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading.Tasks;
 
 /**
  * Service for send and recieve BillList query message to/from Server
@@ -17,7 +15,7 @@ using System.Threading.Tasks;
  * constructor(user, sender)
  * */
 
-namespace BankClientServer.Services
+namespace Client.Services
 {
     class BillListService : AbstractHandler<List<Bill>>
     {

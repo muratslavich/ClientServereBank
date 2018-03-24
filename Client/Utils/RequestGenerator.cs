@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace Client
+namespace Client.Utils
 {
     class RequestGenerator
     {

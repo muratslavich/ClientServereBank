@@ -1,6 +1,7 @@
-﻿using BankClientServer;
-using BankClientServer.Menu;
-using BankClientServer.Services;
+﻿using Client;
+using Client.Menu;
+using Client.Services;
+using Client.Utils;
 using System;
 using System.Collections.Generic;
 

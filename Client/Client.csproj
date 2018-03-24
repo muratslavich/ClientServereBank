@@ -56,8 +56,8 @@
     <Compile Include="Menu\TransactionListMenu.cs" />
     <Compile Include="Menu\TransferMenu.cs" />
     <Compile Include="Menu\UserMenu.cs" />
-    <Compile Include="RequestGenerator.cs" />
-    <Compile Include="ResponseHandler.cs" />
+    <Compile Include="Utils\RequestGenerator.cs" />
+    <Compile Include="Utils\ResponseHandler.cs" />
     <Compile Include="Services\AuthService.cs" />
     <Compile Include="Services\BillListService.cs" />
     <Compile Include="Services\AbstractHandler.cs" />
@@ -70,7 +70,7 @@
     <Compile Include="Services\RegistrationService.cs" />
     <Compile Include="Services\TransactionListService.cs" />
     <Compile Include="Services\TransferService.cs" />
-    <Compile Include="SocketClient.cs" />
+    <Compile Include="Utils\SocketClient.cs" />
     <Compile Include="Transaction.cs" />
     <Compile Include="User.cs" />
   </ItemGroup>

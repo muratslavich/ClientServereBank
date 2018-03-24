@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BankClientServer.Menu
+namespace Client.Menu
 {
     class TransferMenu : AbstractMenu<string[]>
     {

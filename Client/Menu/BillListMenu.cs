@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace BankClientServer.Menu
+namespace Client.Menu
 {
     class BillListMenu : AbstractMenu<int>
     {

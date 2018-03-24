@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BankClientServer.Menu
+namespace Client.Menu
 {
     class EntryMenu : AbstractMenu<int>
     {

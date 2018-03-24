@@ -1,9 +1,9 @@
-﻿using BankClientServer;
+﻿using Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Client
+namespace Client.Utils
 {
     class ResponseHandler
     {

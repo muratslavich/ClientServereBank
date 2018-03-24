@@ -5,8 +5,9 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using Client;
+using Client.Utils;
 
-namespace BankClientServer.Services
+namespace Client.Services
 {
     class CreateBillService : AbstractHandler<Bill>
     {

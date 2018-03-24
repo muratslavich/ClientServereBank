@@ -1,4 +1,5 @@
 ﻿using Client;
+using Client.Utils;
 using System;
 using System.Net.Sockets;
 using System.Text;
@@ -17,7 +18,7 @@ using System.Text;
  * constructor(String[] input[login, password], sender)
  * */
 
-namespace BankClientServer.Services
+namespace Client.Services
 {
     class AuthService : AbstractHandler<int>
     {

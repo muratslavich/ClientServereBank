@@ -47,14 +47,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Tests.cs" />
+    <Compile Include="ClientProgramTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BankClientServer\Client.csproj">
+    <ProjectReference Include="..\Client\Client.csproj">
       <Project>{b6c59f0f-42fb-4aeb-8728-3a6189a8c931}</Project>
       <Name>Client</Name>
     </ProjectReference>

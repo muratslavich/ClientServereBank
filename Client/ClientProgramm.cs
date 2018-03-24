@@ -19,7 +19,7 @@ using System.Collections.Generic;
 
 namespace Client
 {
-    internal class ClientProgramm
+    public class ClientProgramm
     {
         private User _user;
 
@@ -52,7 +52,7 @@ namespace Client
          * 
          * throw InvalidOperationException - wrong input
          * */
-        internal void StartProgram()
+        public void StartProgram()
         {
             _entryMenu = new EntryMenu();
 
@@ -202,9 +202,6 @@ namespace Client
 
         }
 
-        /**
-         * Calls bills list belonging to user
-         * */
         private void BillListMenuProgram()
         {
             // Create BillListService for send/recieve mess to Server

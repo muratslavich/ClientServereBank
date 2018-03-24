@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "BankClientServer\Client.csproj", "{B6C59F0F-42FB-4AEB-8728-3A6189A8C931}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{B6C59F0F-42FB-4AEB-8728-3A6189A8C931}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "Bank\Server.csproj", "{58EAB67F-112D-487C-82E7-8B084033936F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "Server\Server.csproj", "{58EAB67F-112D-487C-82E7-8B084033936F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientTests", "ClientTests\ClientTests.csproj", "{2CFE334A-C3C3-4BDB-8C4C-09202C5419DA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client.UnitTests", "ClientTests\Client.UnitTests.csproj", "{2CFE334A-C3C3-4BDB-8C4C-09202C5419DA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

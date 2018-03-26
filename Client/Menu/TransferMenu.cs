@@ -19,6 +19,10 @@ namespace Client.Menu
             {
                 return _transferPackage;
             }
+            set
+            {
+
+            }
         }
 
         public TransferMenu(int senderIdBill)

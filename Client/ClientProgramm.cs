@@ -43,6 +43,20 @@ namespace Client
         private AbstractMenu<int> _transactionMenu;
         private AbstractMenu<string[]> _transferMenu;
 
+
+        internal AbstractMenu<int> EntryMenu
+        {
+            get
+            {
+                return _entryMenu;
+            }
+
+            set
+            {
+                _entryMenu = value;
+            }
+        }
+
         /**
          * Method entrance to menu`s tree.
          * Called EntryMenu and handle user choose.
@@ -55,7 +69,7 @@ namespace Client
          * */
         public void StartProgram()
         {
-            _entryMenu = new EntryMenu();
+            //_entryMenu = new EntryMenu();
 
             // ... Authorizatin process
             if (_entryMenu.Input == 1)

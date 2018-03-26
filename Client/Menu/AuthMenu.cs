@@ -14,6 +14,10 @@ namespace Client.Menu
             {
                 return _input;
             }
+            set
+            {
+                _input = value;
+            }
         }
 
         public AuthMenu()

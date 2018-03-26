@@ -18,6 +18,10 @@ namespace Client.Menu
             {
                 return _input;
             }
+            set
+            {
+                _input = value;
+            }
         }
 
         public BillListMenu(List<Bill> billList)

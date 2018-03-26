@@ -12,7 +12,7 @@ namespace Client.Menu
         private List<Transaction> _transactionList;
         private string _transactionListMessage = "Меню список транзакций ...";
 
-        public override int Input { get; }
+        public override int Input { get; set; }
 
         public TransactionListMenu(List<Transaction> trasactionList)
         {

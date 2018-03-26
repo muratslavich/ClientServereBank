@@ -16,11 +16,14 @@ namespace Client.Menu
             {
                 return _input;
             }
+            set
+            {
+                _input = value;
+            }
         }
 
         public EntryMenu()
         {
-            Console.Clear();
             ShowMessage(_entryMessage);
             int.TryParse(Console.ReadLine(), out _input);
         }

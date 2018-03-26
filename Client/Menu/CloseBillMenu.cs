@@ -17,6 +17,10 @@ namespace Client.Menu
             {
                 return _input;
             }
+            set
+            {
+                _input = value;
+            }
         }
 
         public CloseBillMenu(int idBill)

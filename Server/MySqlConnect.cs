@@ -85,9 +85,9 @@ namespace Bank
         //	'01.05.1964',
         //	'wet'	
         //);
-        internal int DoRegistration(string[] _separetedData)
+        internal string DoRegistration(string[] _separetedData)
         {
-            int resultRegistration = 0;
+            string resultRegistration = null;
 
             StringBuilder sb = new StringBuilder();
             sb.Append("INSERT INTO Account( name, surname, birth_date, login, pass )   ");
@@ -103,17 +103,17 @@ namespace Bank
             MySqlCommand command = new MySqlCommand(query, conn);
             command.ExecuteNonQuery();
 
-            resultRegistration = 1;
+            resultRegistration = "1";
 
             return resultRegistration;
         }
 
-        internal int CheckAuthorization(string[] separetedData)
+        internal string CheckAuthorization(string[] separetedData)
         {
             string login = separetedData[1];
             string pass = separetedData[2];
 
-            int resultCheck = 0;
+            string resultCheck = null;
 
             // query
             string query = "SELECT Account.login, Account.pass FROM Account WHERE login=" + "'" + login + "'" + "AND pass=" + "'" + pass + "'" + "";
@@ -127,12 +127,12 @@ namespace Bank
 
                 if (login == checkLogin && pass == checkPass)
                 {
-                    resultCheck = 1;
+                    resultCheck = "1";
                 }
 
                 else
                 {
-                    resultCheck = 0;
+                    resultCheck = "0";
                 }
                 // .... add another check !!!!!!!!!!!!!!!
             }

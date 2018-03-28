@@ -6,12 +6,12 @@ namespace Server
     internal class AuthService
     {
         private string[] separetedData;
-        private int _auth;
+        private string _auth;
 
         // 1-auth
         // 2-log error
         // 3-pass error
-        public int AuthResult
+        public string AuthResult
         {
             get
             {
@@ -29,7 +29,7 @@ namespace Server
             this.separetedData = separetedData;
         }
 
-        internal int CheckInBase()
+        internal string CheckInBase()
         {
             // check
             MySqlConnect connect = new MySqlConnect();

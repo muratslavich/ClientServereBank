@@ -7,14 +7,6 @@ using System.Text;
 /**
  * Service for send and recieve Auth message to/from Server
  * 
- * sending String message[1,login,password]
- * 
- * recieve int answer[0 || 1 || 2 || 3]
- * 1-complete auth
- * 2-login error
- * 3-password error
- * 0-answer error
- * 
  * constructor(String[] input[login, password], sender)
  * */
 

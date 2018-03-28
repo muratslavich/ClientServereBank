@@ -56,6 +56,7 @@
     <Compile Include="Menu\TransactionListMenu.cs" />
     <Compile Include="Menu\TransferMenu.cs" />
     <Compile Include="Menu\UserMenu.cs" />
+    <Compile Include="Utils\ErrorsHandler.cs" />
     <Compile Include="Utils\RequestGenerator.cs" />
     <Compile Include="Utils\ResponseHandler.cs" />
     <Compile Include="Services\AuthService.cs" />

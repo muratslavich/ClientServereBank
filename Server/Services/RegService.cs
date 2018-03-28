@@ -6,9 +6,9 @@ namespace Server
     internal class RegService
     {
         private string[] _separetedData;
-        private int _regResult;
+        private string _regResult;
 
-        public int RegResult
+        public string RegResult
         {
             get
             {
@@ -26,7 +26,7 @@ namespace Server
             this._separetedData = _separetedData;
         }
 
-        internal int AddNewUser()
+        internal string AddNewUser()
         {
             MySqlConnect connect = new MySqlConnect();
             connect.DbConnect();

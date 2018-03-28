@@ -27,16 +27,14 @@ namespace Server
             else if (command == 1)
             {
                 AuthService auth = new AuthService(_separetedData);
-                int checkAuth = auth.CheckInBase();
-                _answer = checkAuth.ToString();
+                _answer = auth.CheckInBase();
             }
 
             // registration
             else if (command == 2)
             {
                 RegService reg = new RegService(_separetedData);
-                int regStatus = reg.AddNewUser();
-                _answer = regStatus.ToString();
+                _answer = reg.AddNewUser();
             }
 
             // bill list request

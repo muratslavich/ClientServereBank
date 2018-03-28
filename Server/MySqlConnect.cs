@@ -32,7 +32,7 @@ namespace Bank
         internal string GetBillList(string[] _separetedData)
         {
             int accId = 0;
-            String bills = null;
+            string bills = null;
 
             string login = _separetedData[1];
             string query = "SELECT Account.id_Account FROM Account WHERE login='" + login + "';";
@@ -130,6 +130,10 @@ namespace Bank
                     resultCheck = 1;
                 }
 
+                else
+                {
+                    resultCheck = 0;
+                }
                 // .... add another check !!!!!!!!!!!!!!!
             }
 
@@ -144,12 +148,92 @@ namespace Bank
 
         internal string ConductTransfer(string[] separetedData)
         {
-            throw new NotImplementedException();
+            string transferResult = null;
+            string recipientBillId = separetedData[1];
+            string recieverBillId = separetedData[2];
+            string amount = separetedData[3];
+
+            float recieverBalance = 0;
+
+            string checkRecipientBillQuery = "SELECT COUNT(*) FROM bank.transactions WHERE Bill_id_Bill='" + recipientBillId + "';";
+            string checkAmount = "SELECT balance FROM bank.bill WHERE Bill_id_Bill='" + recieverBillId + "';";
+
+            StringBuilder sb = new StringBuilder();
+            sb.Append("INSERT INTO Transactions ( recipient_id, Bill_id_Bill, amount, transact_date ) ");
+            sb.Append("VALUES ( '" + recipientBillId + "',  ");
+            sb.Append("'" + recieverBillId + "',  ");
+            sb.Append("'" + amount + "',  ");
+            sb.Append("current_timestamp() ");
+            sb.Append(");");
+
+            string addTransaction = sb.ToString();
+
+            MySqlCommand command = new MySqlCommand(checkRecipientBillQuery, conn);
+            MySqlDataReader reader = command.ExecuteReader();
+
+            string recipient = null;
+
+            while (reader.Read())
+            {
+                recipient = reader.GetValue(0).ToString();
+            }
+
+            DbClose();
+
+            if (recipient == null)
+            {
+                transferResult = "0";
+            }
+            
+            DbConnect();
+            MySqlCommand commandToCheckAmmount = new MySqlCommand(checkAmount, conn);
+            MySqlDataReader readerCheck = commandToCheckAmmount.ExecuteReader();
+                
+            while (readerCheck.Read())
+            {
+                recieverBalance = readerCheck.GetFloat(0);
+            }
+
+            DbClose();
+
+            if (recieverBalance < float.Parse(amount))
+            {
+                transferResult = "2";
+            }
+
+            DbConnect();
+            MySqlCommand commandToAddTransact = new MySqlCommand(addTransaction, conn);
+            commandToAddTransact.ExecuteNonQuery();
+
+            return transferResult;
         }
 
         internal string GetMyTransactions(string[] separetedData)
         {
-            throw new NotImplementedException();
+            string billId = separetedData[1];
+            string transactions = null;
+
+            string queryToBills = "SELECT * FROM bank.bill WHERE Account_id_Account='" + billId + "';";
+            MySqlCommand command = new MySqlCommand(queryToBills, conn);
+            MySqlDataReader reader = command.ExecuteReader();
+
+            List<string> transactList = new List<string>();
+
+            while (reader.Read())
+            {
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < 4; i++)
+                {
+                    sb.Append(reader.GetValue(i).ToString() + ";");
+                }
+                sb.Append(reader.GetValue(4).ToString());
+
+                transactList.Add(sb.ToString());
+            }
+
+            transactions = String.Join(",", transactList);
+
+            return transactions;
         }
 
         internal string CloseBillQuery(string[] separetedData)

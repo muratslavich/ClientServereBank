@@ -1,39 +1,19 @@
-﻿using Bank;
-using System;
+﻿using Server;
 
-namespace Server
+namespace Services
 {
-    internal class RegService
+    internal class RegService : IService
     {
-        private string[] _separetedData;
         private string _regResult;
 
-        public string RegResult
+        public string SendQuery(string[] separetedData)
         {
-            get
-            {
-                return _regResult;
-            }
-
-            set
-            {
-                _regResult = value;
-            }
-        }
-
-        public RegService(string[] _separetedData)
-        {
-            this._separetedData = _separetedData;
-        }
-
-        internal string AddNewUser()
-        {
-            MySqlConnect connect = new MySqlConnect();
+            MySqlDAO connect = new MySqlDAO();
             connect.DbConnect();
-            RegResult = connect.DoRegistration(_separetedData);
+            _regResult = connect.DoRegistration(separetedData);
             connect.DbClose(); 
 
-            return RegResult;
+            return _regResult;
         }
     }
 }

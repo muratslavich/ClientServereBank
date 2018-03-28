@@ -1,38 +1,18 @@
-﻿using Bank;
-using System;
+﻿using Server;
 
-namespace Server
+namespace Services
 {
-    internal class TransferService
+    internal class TransferService : IService
     {
-        private string[] _separetedData;
         private string _transferStatus;
 
-        public TransferService(string[] _separetedData)
+        public string SendQuery(string[] separetedData)
         {
-            this._separetedData = _separetedData;
-        }
-
-        public string TransferStatus
-        {
-            get
-            {
-                return _transferStatus;
-            }
-
-            set
-            {
-                _transferStatus = value;
-            }
-        }
-
-        internal string GetTransactResult()
-        {
-            MySqlConnect connect = new MySqlConnect();
+            MySqlDAO connect = new MySqlDAO();
             connect.DbConnect();
-            TransferStatus = connect.ConductTransfer(_separetedData);
+            _transferStatus = connect.ConductTransfer(separetedData);
             connect.DbClose();
-            return TransferStatus;
+            return _transferStatus;
         }
     }
 }

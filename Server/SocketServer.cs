@@ -1,11 +1,7 @@
-﻿using Bank;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Server
 {
@@ -58,7 +54,7 @@ namespace Server
                     string[] separetedData = commandSplitter.ParseData();
 
                     CommandHandler commandHandler = new CommandHandler(separetedData);
-                    string answer = commandHandler.DoWork();
+                    string answer = commandHandler.HandleCommand();
 
                     // Echo the data back to the client.  
                     byte[] msg = Encoding.ASCII.GetBytes(answer);

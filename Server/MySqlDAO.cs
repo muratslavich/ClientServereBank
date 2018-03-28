@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Data;
-
-using MySql.Data;
 using MySql.Data.MySqlClient;
 using System.Text;
 using System.Collections.Generic;
 
-namespace Bank
+namespace Server
 {
-    class MySqlConnect
+    class MySqlDAO
     {
         //измените имя бд на ваше, а также имя пользователя и пароль если нужно
         private readonly string connStr = "server=localhost;user=root;database=bank;port=3306;password=root;";

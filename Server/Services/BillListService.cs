@@ -1,38 +1,18 @@
-﻿using Bank;
-using System;
+﻿using Server;
 
-namespace Server
+namespace Services
 {
-    internal class BillListService
+    internal class BillListService : IService
     {
-        private string[] _separetedData;
         private string _bills;
 
-        public string Bills
+        public string SendQuery(string[] separetedData)
         {
-            get
-            {
-                return _bills;
-            }
-
-            set
-            {
-                _bills = value;
-            }
-        }
-
-        public BillListService(string[] _separetedData)
-        {
-            this._separetedData = _separetedData;
-        }
-
-        internal string GetBills()
-        {
-            MySqlConnect connect = new MySqlConnect();
+            MySqlDAO connect = new MySqlDAO();
             connect.DbConnect();
-            Bills = connect.GetBillList(_separetedData);
+            _bills = connect.GetBillList(separetedData);
             connect.DbClose();
-            return Bills;
+            return _bills;
         }
     }
 }

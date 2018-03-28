@@ -1,43 +1,20 @@
-﻿using Bank;
-using System;
+﻿using Server;
 
-namespace Server
+namespace Services
 {
-    internal class AuthService
+    internal class AuthService : IService
     {
-        private string[] separetedData;
         private string _auth;
 
-        // 1-auth
-        // 2-log error
-        // 3-pass error
-        public string AuthResult
-        {
-            get
-            {
-                return _auth;
-            }
-
-            set
-            {
-                _auth = value;
-            }
-        }
-
-        public AuthService(string[] separetedData)
-        {
-            this.separetedData = separetedData;
-        }
-
-        internal string CheckInBase()
+        public string SendQuery(string[] separetedData)
         {
             // check
-            MySqlConnect connect = new MySqlConnect();
+            MySqlDAO connect = new MySqlDAO();
             connect.DbConnect();
-            AuthResult = connect.CheckAuthorization(separetedData);
+            _auth = connect.CheckAuthorization(separetedData);
             connect.DbClose();
 
-            return AuthResult;
+            return _auth;
         }
     }
 }

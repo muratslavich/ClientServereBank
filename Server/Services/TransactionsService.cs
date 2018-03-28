@@ -1,38 +1,18 @@
-﻿using Bank;
-using System;
+﻿using Server;
 
-namespace Server
+namespace Services
 {
-    internal class TransactionsService
+    internal class TransactionsService : IService
     {
-        private string[] _separetedData;
         private string _transactions;
 
-        public string Transactions
+        public string SendQuery(string[] separetedData)
         {
-            get
-            {
-                return _transactions;
-            }
-
-            set
-            {
-                _transactions = value;
-            }
-        }
-
-        public TransactionsService(string[] _separetedData)
-        {
-            this._separetedData = _separetedData;
-        }
-
-        internal string GetTransactions()
-        {
-            MySqlConnect connect = new MySqlConnect();
+            MySqlDAO connect = new MySqlDAO();
             connect.DbConnect();
-            Transactions = connect.GetMyTransactions(_separetedData);
+            _transactions = connect.GetMyTransactions(separetedData);
             connect.DbClose();
-            return Transactions;
+            return _transactions;
         }
     }
 }

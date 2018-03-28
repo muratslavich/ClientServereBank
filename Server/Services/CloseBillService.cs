@@ -1,38 +1,18 @@
-﻿using Bank;
-using System;
+﻿using Server;
 
-namespace Server
+namespace Services
 {
-    internal class CloseBillService
+    internal class CloseBillService : IService
     {
-        private string[] _separetedData;
         private string _result;
 
-        public string Result
+        public string SendQuery(string[] separetedData)
         {
-            get
-            {
-                return _result;
-            }
-
-            set
-            {
-                _result = value;
-            }
-        }
-
-        public CloseBillService(string[] _separetedData)
-        {
-            this._separetedData = _separetedData;
-        }
-
-        internal string CloseBill()
-        {
-            MySqlConnect connect = new MySqlConnect();
+            MySqlDAO connect = new MySqlDAO();
             connect.DbConnect();
-            Result = connect.CloseBillQuery(_separetedData);
+            _result = connect.CloseBillQuery(separetedData);
             connect.DbClose();
-            return Result;
+            return _result;
         }
     }
 }

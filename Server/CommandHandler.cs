@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Bank.Services;
+using Services;
+using System;
+using System.Collections.Generic;
 
 namespace Server
 {
@@ -7,70 +10,32 @@ namespace Server
         private string[] _separetedData;
         private string _answer;
 
+        private readonly Dictionary<int, IServiceFactory> _factory = new Dictionary<int, IServiceFactory>
+        {
+            { 1, new AuthFactory() },
+            { 2, new RegFactory() },
+            { 3, new BillListFactory() },
+            { 4, new NewBillFactory() },
+            { 5, new TransferFactory() },
+            { 6, new TransactionFactory() },
+            { 7, new CloseBillFactory() }
+        };
+
         public CommandHandler(string[] separetedData)
         {
-            this._separetedData = separetedData;
+            _separetedData = separetedData;
         }
 
-        internal string DoWork()
+        internal string HandleCommand()
         {
             int command;
             Int32.TryParse(_separetedData[0], out command);
 
-            // error
-            if (command == 0)
-            {
-                // handle exception
-            }
+            IServiceFactory serviceFactory;
+            _factory.TryGetValue(command, out serviceFactory);
 
-            // authorization
-            else if (command == 1)
-            {
-                AuthService auth = new AuthService(_separetedData);
-                _answer = auth.CheckInBase();
-            }
-
-            // registration
-            else if (command == 2)
-            {
-                RegService reg = new RegService(_separetedData);
-                _answer = reg.AddNewUser();
-            }
-
-            // bill list request
-            else if (command == 3)
-            {
-                BillListService billList = new BillListService(_separetedData);
-                _answer = billList.GetBills();
-            }
-
-            // new bill request
-            else if (command == 4)
-            {
-                NewBillService newBill = new NewBillService(_separetedData);
-                _answer = newBill.GetNewBillAsString();
-            }
-
-            // transfer request
-            else if (command == 5)
-            {
-                TransferService transfer = new TransferService(_separetedData);
-                _answer = transfer.GetTransactResult();
-            }
-
-            // transaction list
-            else if (command == 6)
-            {
-                TransactionsService transactions = new TransactionsService(_separetedData);
-                _answer = transactions.GetTransactions();
-            }
-
-            // close bill request
-            else if (command == 7)
-            {
-                CloseBillService delete = new CloseBillService(_separetedData);
-                _answer = delete.CloseBill();
-            }
+            IService service = serviceFactory.CreateService();
+            _answer = service.SendQuery(_separetedData);
             
             return _answer;
         }

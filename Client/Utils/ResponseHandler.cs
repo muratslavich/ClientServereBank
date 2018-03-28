@@ -7,9 +7,9 @@ namespace Client.Utils
 {
     class ResponseHandler
     {
-        char _delimiter = ',';
+        private char _delimiter = ',';
         private string[] _answer;
-        private List<Bill> _answerList;
+        private List<Bill> _answerList = new List<Bill>();
 
         public string[] Answer
         {
@@ -60,11 +60,10 @@ namespace Client.Utils
                 string[] separetedBill = item.Split(';');
 
                 bill.IdBill = int.Parse(separetedBill[0]);
-                bill.Login = separetedBill[1];
-                bill.CreateDate = DateTime.Parse(separetedBill[2]);
-                bill.Balance = Decimal.Parse(separetedBill[3]);
+                bill.CreateDate = DateTime.Parse(separetedBill[1]);
+                bill.Balance = Decimal.Parse(separetedBill[2]);
 
-                AnswerList.Add(bill);
+                _answerList.Add(bill);
             }
         }
 

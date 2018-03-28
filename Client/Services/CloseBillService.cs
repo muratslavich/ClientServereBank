@@ -19,7 +19,7 @@ namespace Client.Services
         {
             get
             {
-                throw new NotImplementedException();
+                return _answer;
             }
         }
 

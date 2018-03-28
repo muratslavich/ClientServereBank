@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bank;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -37,31 +38,33 @@ namespace Server
                 listener.Listen(10);
 
                 // Start listening for connections.  
-                
-                    Console.WriteLine("Waiting for a connection...");
-                    // Program is suspended while waiting for an incoming connection.  
-                    Socket handler = listener.Accept();
+                Console.WriteLine("Waiting for a connection...");
+                // Program is suspended while waiting for an incoming connection.  
+                Socket handler = listener.Accept();
+
                 while (true)
                 {
                     data = null;
 
                     // An incoming connection needs to be processed.  
-                    
-                    
                     bytes = new byte[1024];
                     int bytesRec = handler.Receive(bytes);
                     data += Encoding.ASCII.GetString(bytes, 0, bytesRec);
                     
-                    
-
                     // Show the data on the console.  
                     Console.WriteLine("Text received : {0}", data);
 
+                    CommandSplitter commandSplitter = new CommandSplitter(data);
+                    string[] separetedData = commandSplitter.ParseData();
+
+                    CommandHandler commandHandler = new CommandHandler(separetedData);
+                    string answer = commandHandler.DoWork();
+
                     // Echo the data back to the client.  
-                    byte[] msg = Encoding.ASCII.GetBytes("1,login");
+                    byte[] msg = Encoding.ASCII.GetBytes(answer);
 
                     handler.Send(msg);
-                    Console.WriteLine("send", Encoding.ASCII.GetString(msg));
+                    Console.WriteLine("send", answer);
                     //handler.Shutdown(SocketShutdown.Both);
                     //handler.Close();
                 }

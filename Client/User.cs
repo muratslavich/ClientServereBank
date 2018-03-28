@@ -21,7 +21,6 @@ namespace Client
         private string _surname;
         private DateTime _birthDate;
         private string _login;
-        private string v;
 
         public string Name
         {

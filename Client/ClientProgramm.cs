@@ -69,7 +69,7 @@ namespace Client
          * */
         public void StartProgram()
         {
-            //_entryMenu = new EntryMenu();
+            _entryMenu = new EntryMenu();
 
             // ... Authorizatin process
             if (_entryMenu.Input == 1)
@@ -126,7 +126,7 @@ namespace Client
             // ... positive registration
             else if (_registrationService.Answer == 1)
             {
-                _user = new User(input[0], input[1], DateTime.Parse(input[3]), input[4]);
+                //_answe_user = new User(input[0], input[1], DateTime.Parse(input[3]), input[4]);
                 UserMenuProgram();
             }
 
@@ -260,6 +260,8 @@ namespace Client
             {
                 // create new bill
                 _createBillService = new CreateBillService(_user, SocketClient._sender);
+                _createBillService.SendMessageToSocket();
+                _createBillService.RecieveMessageFromSocket();
                 UserMenuProgram();
             }
             else if (_newBillMenu.Input == 2)

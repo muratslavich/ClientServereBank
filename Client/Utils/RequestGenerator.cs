@@ -11,10 +11,8 @@ namespace Client.Utils
             reg,
             billList,
             newBill,
-            transferCheck,
             transfer,
             transactionList,
-            closeBillCheck,
             closeBill
         }
 

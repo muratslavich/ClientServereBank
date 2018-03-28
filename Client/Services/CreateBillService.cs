@@ -32,10 +32,10 @@ namespace Client.Services
         public override void RecieveMessageFromSocket()
         {
             string answer = SocketClient.RecieveMessage(_sender);
-            ResponseHandler responseHandler = new ResponseHandler();
-            _answer = responseHandler.ResponseHandlerToBill(answer);
+            //ResponseHandler responseHandler = new ResponseHandler();
+            //_answer = responseHandler.ResponseHandlerToBill(answer);
             Console.WriteLine("Создан новый счет ... ");
-            Console.WriteLine(_answer.ToString());
+            Console.WriteLine(answer);
             Console.ReadLine();
         }
 

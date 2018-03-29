@@ -5,6 +5,20 @@ namespace Client.Utils
 {
     class RequestGenerator
     {
+        private string[] _userInput;
+        private string _message;
+
+        public string Message {
+            get { return _message; }
+            private set { _message = value; }
+        }
+
+        public RequestGenerator(RequestCode code, string[] userInput)
+        {
+            _userInput = userInput;
+            GenerateRequest((int)code, userInput);
+        }
+
         public enum RequestCode : int
         {
             auth = 1,
@@ -16,7 +30,7 @@ namespace Client.Utils
             closeBill
         }
 
-        public string GenerateRequest(int req, string[] train)
+        private void GenerateRequest(int req, string[] train)
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(req + ",");
@@ -29,11 +43,10 @@ namespace Client.Utils
             //добавляем последний элемент
             sb.Append(train[train.Length-1]);
 
-            string request = sb.ToString();
-            return request;
+            Message = sb.ToString();
         }
 
-        // overload
+        // overload -----------------------------------------
         public string GenerateRequest(int req, string train)
         {
             StringBuilder sb = new StringBuilder();

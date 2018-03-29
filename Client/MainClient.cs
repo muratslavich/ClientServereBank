@@ -1,4 +1,5 @@
-﻿using Client.Utils;
+﻿using BankClientServer;
+using Client.Utils;
 using System;
 
 namespace Client
@@ -9,14 +10,16 @@ namespace Client
         {
             //try
             //{
-                SocketClient.StartClient();
-                ClientProgramm client = new ClientProgramm();
+               // SocketClient.StartClient();
+               // ClientProgramm client = new ClientProgramm();
 
                 while (true)
                 {
                     try
                     {
-                        client.StartProgram();
+                        //client.StartProgram();
+                        StateLogic logic = new StateLogic();
+                    
                     }
                     catch (InvalidOperationException ie)
                     {

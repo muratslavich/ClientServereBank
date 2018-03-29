@@ -153,7 +153,7 @@ namespace Server
             float recieverBalance = 0;
 
             string checkRecipientBillQuery = "SELECT COUNT(*) FROM bank.transactions WHERE Bill_id_Bill='" + recipientBillId + "';";
-            string checkAmount = "SELECT balance FROM bank.bill WHERE Bill_id_Bill='" + recieverBillId + "';";
+            string checkAmount = "SELECT balance FROM bank.bill WHERE id_Bill='" + recieverBillId + "';";
 
             StringBuilder sb = new StringBuilder();
             sb.Append("INSERT INTO Transactions ( recipient_id, Bill_id_Bill, amount, transact_date ) ");
@@ -202,6 +202,8 @@ namespace Server
             MySqlCommand commandToAddTransact = new MySqlCommand(addTransaction, conn);
             commandToAddTransact.ExecuteNonQuery();
 
+            transferResult = "1";
+
             return transferResult;
         }
 
@@ -210,7 +212,7 @@ namespace Server
             string billId = separetedData[1];
             string transactions = null;
 
-            string queryToBills = "SELECT * FROM bank.bill WHERE Account_id_Account='" + billId + "';";
+            string queryToBills = "SELECT * FROM bank.transactions WHERE Bill_id_Bill='" + billId + "';";
             MySqlCommand command = new MySqlCommand(queryToBills, conn);
             MySqlDataReader reader = command.ExecuteReader();
 

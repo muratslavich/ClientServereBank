@@ -23,7 +23,7 @@ using System.Threading.Tasks;
 
 namespace Client.Services
 {
-    class RegistrationService : AbstractHandler<int>
+    class RegistrationService : AbstractService<int>
     {
         private int _answer;
         private string[] _input;

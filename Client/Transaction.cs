@@ -6,9 +6,10 @@ namespace Client
     internal class Transaction
     {
         private int _senderId;
-        private int _recieveId;
+        private int _recipientId;
         private DateTime _date;
         private decimal _amount;
+        private int _transactId;
 
         public int SenderId
         {
@@ -27,12 +28,12 @@ namespace Client
         {
             get
             {
-                return _recieveId;
+                return _recipientId;
             }
 
             set
             {
-                _recieveId = value;
+                _recipientId = value;
             }
         }
 
@@ -62,13 +63,27 @@ namespace Client
             }
         }
 
+        public int TransactId
+        {
+            get
+            {
+                return _transactId;
+            }
+
+            set
+            {
+                _transactId = value;
+            }
+        }
+
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append(SenderId + ";");
+            sb.Append(TransactId + ";");
             sb.Append(RecieveId + ";");
-            sb.Append(Date + ";");
-            sb.Append(Amount);
+            sb.Append(SenderId + ";");
+            sb.Append(Amount + ";");
+            sb.Append(Date);
             string transaction = sb.ToString();
 
             return transaction;

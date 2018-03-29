@@ -17,7 +17,7 @@ using System.Text;
 
 namespace Client.Services
 {
-    class BillListService : AbstractHandler<List<Bill>>
+    class BillListService : AbstractService<List<Bill>>
     {
         private string _userLogin;
         private List<Bill> _answer;

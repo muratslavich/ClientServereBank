@@ -24,13 +24,13 @@ namespace Client
     {
         private User _user;
 
-        private AbstractHandler<int> _authService;
-        private AbstractHandler<int> _registrationService;
-        private AbstractHandler<List<Bill>> _billListService;
-        private AbstractHandler<Bill> _createBillService;
-        private AbstractHandler<int> _closeBillService;
-        private AbstractHandler<List<Transaction>> _transactionService;
-        private AbstractHandler<int> _transferService;
+        private AbstractService<int> _authService;
+        private AbstractService<int> _registrationService;
+        private AbstractService<List<Bill>> _billListService;
+        private AbstractService<Bill> _createBillService;
+        private AbstractService<int> _closeBillService;
+        private AbstractService<List<Transaction>> _transactionService;
+        private AbstractService<int> _transferService;
 
         private AbstractMenu<string[]> _authMenu;
         private AbstractMenu<int> _userMenu;
@@ -309,7 +309,7 @@ namespace Client
 
         }
 
-        private void CloseBillMenuProgram(Bill bill)
+        private void CloseBillMenuProgram(Bill bill) //--------------------------------------
         {
             _closeBillMenu = new CloseBillMenu(bill.IdBill);
             
@@ -349,10 +349,12 @@ namespace Client
             }
         }
 
-        private void TransactionListMenuProgram(Bill bill)
+        private void TransactionListMenuProgram(Bill bill) //--------------------------------
         {
             // get transaction list from server
             _transactionService = new TransactionListService(bill, SocketClient._sender);
+            _transactionService.SendMessageToSocket();
+            _transactionService.RecieveMessageFromSocket();
             
             List<Transaction> trasactionList = _transactionService.Answer;
             _transactionMenu = new TransactionListMenu(trasactionList);
@@ -360,7 +362,7 @@ namespace Client
             BillMenuProgram(bill);
         }
 
-        private void TransferMenuProgram(Bill bill)
+        private void TransferMenuProgram(Bill bill) //---------------------------------------
         {
             // menu output
             _transferMenu = new TransferMenu(bill.IdBill);

@@ -31,10 +31,11 @@ namespace Client.Utils
             _sender.RemoteEndPoint.ToString());
         }
 
-        public static void SendMessage(Socket sender, byte[] msg)
+        public static void SendMessage(string requestToServer)
         {
+            byte[] msg = Encoding.ASCII.GetBytes(requestToServer);
             // Send the data through the socket.  
-            int bytesSent = sender.Send(msg);
+            int bytesSent = _sender.Send(msg);
         }
 
         public static string RecieveMessage(Socket sender)

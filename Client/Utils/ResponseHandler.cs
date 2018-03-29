@@ -74,11 +74,23 @@ namespace Client.Utils
             {
                 string[] separatedTransaction = item.Split(';');
                 Transaction transaction = new Transaction();
+                int transactId = 0;
+                int recipientId = 0;
+                int billId = 0;
+                decimal amount = 0;
+                DateTime transactDate = new DateTime();
 
-                transaction.SenderId = int.Parse(separatedTransaction[0]);
-                transaction.RecieveId = int.Parse(separatedTransaction[1]);
-                transaction.Date = DateTime.Parse(separatedTransaction[2]);
-                transaction.Amount = decimal.Parse(separatedTransaction[3]);
+                int.TryParse(separatedTransaction[0], out billId);
+                int.TryParse(separatedTransaction[1], out recipientId);
+                DateTime.TryParse(separatedTransaction[2], out transactDate);
+                decimal.TryParse(separatedTransaction[3], out amount);
+                int.TryParse(separatedTransaction[0], out transactId);
+
+                transaction.TransactId = transactId;
+                transaction.RecieveId = recipientId;
+                transaction.SenderId = billId;
+                transaction.Amount = amount;
+                transaction.Date = transactDate;
 
                 transactionsList.Add(transaction);
             }

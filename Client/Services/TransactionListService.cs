@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Client.Services
 {
-    class TransactionListService : AbstractHandler<List<Transaction>>
+    class TransactionListService : AbstractService<List<Transaction>>
     {
         private int _billId;
         private Socket _sender;

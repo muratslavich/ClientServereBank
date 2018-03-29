@@ -9,7 +9,7 @@ using Client.Utils;
 
 namespace Client.Services
 {
-    class CreateBillService : AbstractHandler<Bill>
+    class CreateBillService : AbstractService<Bill>
     {
         private User _user;
         private Socket _sender;

@@ -9,7 +9,7 @@ using Client.Utils;
 
 namespace Client.Services
 {
-    class TransferService : AbstractHandler<int>
+    class TransferService : AbstractService<int>
     {
         private string[] _train;
         private Socket _sender;

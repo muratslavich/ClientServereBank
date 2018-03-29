@@ -9,11 +9,12 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>BankClientServer</RootNamespace>
     <AssemblyName>BankClientServer</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -24,6 +25,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -56,6 +58,7 @@
     <Compile Include="Menu\TransactionListMenu.cs" />
     <Compile Include="Menu\TransferMenu.cs" />
     <Compile Include="Menu\UserMenu.cs" />
+    <Compile Include="StateLogic.cs" />
     <Compile Include="Utils\ErrorsHandler.cs" />
     <Compile Include="Utils\RequestGenerator.cs" />
     <Compile Include="Utils\ResponseHandler.cs" />

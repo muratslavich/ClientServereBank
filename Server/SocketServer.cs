@@ -14,8 +14,6 @@ namespace Server
 
         public static void StartListening()
         {
-            
-
             // Establish the local endpoint for the socket.  
             // Dns.GetHostName returns the name of the   
             // host running the application.  
@@ -82,7 +80,7 @@ namespace Server
                 byte[] msg = Encoding.ASCII.GetBytes(answer);
 
                 handler.Send(msg);
-                Console.WriteLine("send", answer);
+                Console.WriteLine("send : {0}", answer);
                 //handler.Shutdown(SocketShutdown.Both);
                 //handler.Close();
             }

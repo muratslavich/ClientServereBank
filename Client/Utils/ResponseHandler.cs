@@ -8,30 +8,7 @@ namespace Client.Utils
     class ResponseHandler
     {
         private char _delimiter = ',';
-        private string[] _answer;
-        private List<Bill> _answerList = new List<Bill>();
-
-        public string[] Answer
-        {
-            get { return _answer; }
-            private set
-            {
-                _answer = value;
-            }
-        }
-        public List<Bill> AnswerList
-        {
-            get { return _answerList; }
-            private set
-            {
-                _answerList = value;
-            }
-        }
-
-        public void ResponseHandlerToArray(string answer)
-        {
-            Answer = answer.Split(_delimiter);
-        }
+        private readonly char _innerDelimitter = ';';
 
         public List<string> ResposeHandlerToList(string answer)
         {
@@ -52,19 +29,23 @@ namespace Client.Utils
             return bill;
         }
 
-        public void ResponseHandlerListToBill(List<string> bills)
+        public List<Bill> ResponseHandlerListToBill(string answer)
         {
-            foreach (var item in bills)
+            List<Bill> billList = new List<Bill>();
+            List<string> listBill = answer.Split(_delimiter).ToList();
+
+            foreach (var item in listBill)
             {
                 Bill bill = new Bill();
-                string[] separetedBill = item.Split(';');
+                string[] separetedBill = item.Split(_innerDelimitter);
 
                 bill.IdBill = int.Parse(separetedBill[0]);
                 bill.CreateDate = DateTime.Parse(separetedBill[1]);
                 bill.Balance = Decimal.Parse(separetedBill[2]);
 
-                _answerList.Add(bill);
+                billList.Add(bill);
             }
+            return billList;
         }
 
         public List<Transaction> ResponseHandlerToTransaction(List<string> transactions)

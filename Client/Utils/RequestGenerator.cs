@@ -5,6 +5,17 @@ namespace Client.Utils
 {
     class RequestGenerator
     {
+        public enum RequestCode : int
+        {
+            auth = 1,
+            reg,
+            billList,
+            newBill,
+            transfer,
+            transactionList,
+            closeBill
+        }
+
         private string[] _userInput;
         private string _message;
 
@@ -19,15 +30,9 @@ namespace Client.Utils
             GenerateRequest((int)code, userInput);
         }
 
-        public enum RequestCode : int
+        public RequestGenerator(RequestCode code, string userInput)
         {
-            auth = 1,
-            reg,
-            billList,
-            newBill,
-            transfer,
-            transactionList,
-            closeBill
+            GenerateRequest((int)code, userInput);
         }
 
         private void GenerateRequest(int req, string[] train)

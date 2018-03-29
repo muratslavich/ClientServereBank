@@ -38,13 +38,13 @@ namespace Client.Utils
             int bytesSent = _sender.Send(msg);
         }
 
-        public static string RecieveMessage(Socket sender)
+        public static string RecieveMessage()
         {
             // Data buffer for incoming data.  
             byte[] bytes = new byte[1024];
 
             // Receive the response from the remote device.  
-            int bytesRec = sender.Receive(bytes);
+            int bytesRec = _sender.Receive(bytes);
             string answer = Encoding.ASCII.GetString(bytes, 0, bytesRec);
 
             return answer; 

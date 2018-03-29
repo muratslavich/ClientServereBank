@@ -64,7 +64,7 @@
     <Compile Include="Utils\ResponseHandler.cs" />
     <Compile Include="Services\AuthService.cs" />
     <Compile Include="Services\BillListService.cs" />
-    <Compile Include="Services\AbstractHandler.cs" />
+    <Compile Include="Services\AbstractService.cs" />
     <Compile Include="MainClient.cs" />
     <Compile Include="Menu\AbstractMenu.cs" />
     <Compile Include="Menu\EntryMenu.cs" />

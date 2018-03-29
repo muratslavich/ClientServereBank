@@ -8,7 +8,7 @@ namespace Client.Menu
         private string _newBillMenuMessage = "Меню создания нового счета\n" +
             "Подтвердите создание нового счета\n" +
             "1-Да\n" +
-            "2-Нет";
+            "0-Нет";
 
         public override int Input
         {

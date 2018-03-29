@@ -1,27 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
-using Client;
-using Client.Utils;
+﻿using Client.Utils;
 
 namespace Client.Services
 {
-    class TransferService : AbstractService<int>
+    class TransferService : AbstractService
     {
-        private string[] _train;
-        private Socket _sender;
-        private int _answer;
+        private string[] _userInput;
+        private string _answer;
 
-        public TransferService(string[] train, Socket sender)
-        {
-            _train = train;
-            _sender = sender;
-        }
-
-        public override int Answer
+        public override string Answer
         {
             get
             {
@@ -29,18 +15,22 @@ namespace Client.Services
             }
         }
 
-        public override void RecieveMessageFromSocket()
+        public TransferService(string[] userInput)
         {
-            string answer = SocketClient.RecieveMessage(_sender);
-            int.TryParse(answer, out _answer);
+            _userInput = userInput;
+            SendMessageToSocket();
+            RecieveMessageFromSocket();
         }
 
-        public override void SendMessageToSocket()
+        private void RecieveMessageFromSocket()
         {
-            RequestGenerator request = new RequestGenerator();
-            string requestToServer = request.GenerateRequest((int)RequestGenerator.RequestCode.transfer, _train);
-            byte[] msg = Encoding.ASCII.GetBytes(requestToServer);
-            SocketClient.SendMessage(_sender, msg);
+            _answer = SocketClient.RecieveMessage();
+        }
+
+        private void SendMessageToSocket()
+        {
+            RequestGenerator _requestGenerator = new RequestGenerator(RequestGenerator.RequestCode.transfer, _userInput);
+            SocketClient.SendMessage(_requestGenerator.Message);
         }
     }
 }

@@ -9,7 +9,7 @@ namespace Client.Menu
         private string _closeBillMenuMessage = "Меню закрытия счета\n" +
             "Подтвердите закрытие счета\n" +
             "1-Да\n" +
-            "2-Нет";
+            "0-Нет";
 
         public override int Input
         {
@@ -23,10 +23,9 @@ namespace Client.Menu
             }
         }
 
-        public CloseBillMenu(int idBill)
+        public CloseBillMenu(Bill infoBill)
         {
-            _idBill = idBill;
-            ShowMessage(idBill.ToString());
+            ShowMessage(infoBill.ToString());
             ShowMessage(_closeBillMenuMessage);
             int.TryParse(Console.ReadLine(), out _input);
         }

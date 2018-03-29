@@ -1,8 +1,4 @@
-﻿using Client;
-using Client.Utils;
-using System;
-using System.Net.Sockets;
-using System.Text;
+﻿using Client.Utils;
 
 /**
  * Service for send and recieve Auth message to/from Server
@@ -40,9 +36,7 @@ namespace Client.Services
 
         private void RecieveMessageFromSocket()
         {
-            String answer = SocketClient.RecieveMessage(SocketClient._sender);
-            if (answer.IndexOf("<0x>") > -1) _answer = "Error";
-            else _answer = answer;
+            _answer = SocketClient.RecieveMessage();
         }
     }
 }

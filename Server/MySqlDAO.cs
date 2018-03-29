@@ -129,7 +129,7 @@ namespace Server
 
                 else
                 {
-                    resultCheck = "0";
+                    resultCheck = "<0x01>";
                 }
                 // .... add another check !!!!!!!!!!!!!!!
             }
@@ -179,7 +179,7 @@ namespace Server
 
             if (recipient == null)
             {
-                transferResult = "0";
+                transferResult = "<0x09>";
             }
             
             DbConnect();
@@ -195,7 +195,7 @@ namespace Server
 
             if (recieverBalance < float.Parse(amount))
             {
-                transferResult = "2";
+                transferResult = "<0x08>";
             }
 
             DbConnect();

@@ -1,21 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
-using Client;
-using Client.Utils;
+﻿using Client.Utils;
 
 namespace Client.Services
 {
-    class CreateBillService : AbstractService<Bill>
+    class CreateBillService : AbstractService
     {
+        private string _answer;
         private User _user;
-        private Socket _sender;
-        private Bill _answer;
 
-        public override Bill Answer
+        public override string Answer
         {
             get
             {
@@ -23,28 +15,22 @@ namespace Client.Services
             }
         }
 
-        public CreateBillService(User user, Socket sender)
+        public CreateBillService(User user)
         {
             _user = user;
-            _sender = sender;
+            SendMessageToSocket();
+            RecieveMessageFromSocket();
         }
 
-        public override void RecieveMessageFromSocket()
+        private void RecieveMessageFromSocket()
         {
-            string answer = SocketClient.RecieveMessage(_sender);
-            //ResponseHandler responseHandler = new ResponseHandler();
-            //_answer = responseHandler.ResponseHandlerToBill(answer);
-            Console.WriteLine("Создан новый счет ... ");
-            Console.WriteLine(answer);
-            Console.ReadLine();
+            _answer = SocketClient.RecieveMessage();
         }
 
-        public override void SendMessageToSocket()
+        private void SendMessageToSocket()
         {
-            RequestGenerator requestGenerator = new RequestGenerator();
-            string requestToServer = requestGenerator.GenerateRequest((int)RequestGenerator.RequestCode.newBill, _user.Login);
-            byte[] msg = Encoding.ASCII.GetBytes(requestToServer);
-            SocketClient.SendMessage(_sender, msg);
+            RequestGenerator _requestGenerator = new RequestGenerator(RequestGenerator.RequestCode.newBill, _user.Login);
+            SocketClient.SendMessage(_requestGenerator.Message);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using Client;
+﻿using Client.Utils;
 using System;
 using System.Collections.Generic;
 
@@ -8,7 +8,7 @@ namespace Client.Menu
     {
         private List<Bill> _billList;
         private int _input;
-        private string _billListMenuMessage = "Меню Список счетов\n" +
+        private readonly string _billListMenuMessage = "Меню Список счетов\n" +
             "1-Введите Id счета для выбора\n" +
             "2-Возврат в Меню Пользователя";
 
@@ -24,16 +24,21 @@ namespace Client.Menu
             }
         }
 
-        public BillListMenu(List<Bill> billList)
+        public void ShowList(List<Bill> billList)
         {
-            _billList = billList;
             Console.Clear();
             ShowMessage(_billListMenuMessage);
-            foreach (var item in _billList)
+            foreach (var item in billList)
             {
                 ShowMessage(item.ToString());
             }
             int.TryParse(Console.ReadLine(), out _input);
+        }
+
+        public void SepareteAnswer(string answer)
+        {
+            ResponseHandler handler = new ResponseHandler();
+            _billList = handler.ResponseHandlerListToBill(answer);
         }
     }
 }

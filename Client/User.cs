@@ -21,6 +21,7 @@ namespace Client
         private string _surname;
         private DateTime _birthDate;
         private string _login;
+        private Bill _currentBill;
 
         public string Name
         {
@@ -52,6 +53,19 @@ namespace Client
             set
             {
                 _login = value;
+            }
+        }
+
+        internal Bill CurrentBill
+        {
+            get
+            {
+                return _currentBill;
+            }
+
+            set
+            {
+                _currentBill = value;
             }
         }
 

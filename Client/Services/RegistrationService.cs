@@ -1,11 +1,4 @@
-﻿using Client;
-using Client.Utils;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Client.Utils;
 
 /**
  * Service for send and recieve registration message to/from Server
@@ -23,36 +16,35 @@ using System.Threading.Tasks;
 
 namespace Client.Services
 {
-    class RegistrationService : AbstractService<int>
+    class RegistrationService : AbstractService
     {
-        private int _answer;
-        private string[] _input;
-        private Socket _sender;
-        private RequestGenerator _requestGenerator;
+        private string[] _userInput;
+        private string _answer;
 
-        public override int Answer
+        public override string Answer
         {
-            get { return _answer; }
+            get
+            {
+                return _answer;
+            }
         }
 
-        public RegistrationService(string[] input, Socket sender)
+        public RegistrationService(string[] input)
         {
-            _input = input;
-            _sender = sender;
+            _userInput = input;
+            SendMessageToSocket();
+            RecieveMessageFromSocket();
         }
 
-        public override void RecieveMessageFromSocket()
+        private void RecieveMessageFromSocket()
         {
-            string answer = SocketClient.RecieveMessage(_sender);
-            int.TryParse(answer, out _answer);
+            _answer = SocketClient.RecieveMessage();
         }
 
-        public override void SendMessageToSocket()
+        private void SendMessageToSocket()
         {
-            _requestGenerator = new RequestGenerator();
-            string requestToServer = _requestGenerator.GenerateRequest((int)RequestGenerator.RequestCode.reg, _input);
-            byte[] msg = Encoding.ASCII.GetBytes(requestToServer);
-            SocketClient.SendMessage(_sender, msg);
+            RequestGenerator _requestGenerator = new RequestGenerator(RequestGenerator.RequestCode.reg, _userInput);
+            SocketClient.SendMessage(_requestGenerator.Message);
         }
     }
 }

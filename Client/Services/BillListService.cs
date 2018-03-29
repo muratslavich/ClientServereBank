@@ -1,8 +1,4 @@
-﻿using Client;
-using Client.Utils;
-using System.Collections.Generic;
-using System.Net.Sockets;
-using System.Text;
+﻿using Client.Utils;
 
 /**
  * Service for send and recieve BillList query message to/from Server
@@ -17,15 +13,12 @@ using System.Text;
 
 namespace Client.Services
 {
-    class BillListService : AbstractService<List<Bill>>
+    class BillListService : AbstractService
     {
-        private string _userLogin;
-        private List<Bill> _answer;
-        private Socket _sender;
-        private RequestGenerator _requestGenerator;
-        private ResponseHandler _responseHandler;
+        private string _answer;
+        private string _login;
 
-        public override List<Bill> Answer
+        public override string Answer
         {
             get
             {
@@ -33,28 +26,22 @@ namespace Client.Services
             }
         }
 
-        public BillListService(User user, Socket sender)
+        public BillListService(string login)
         {
-            _userLogin = user.Login;
-            _sender = sender;
+            _login = login;
+            SendMessageToSocket();
+            RecieveMessageFromSocket();
         }
 
-        public override void SendMessageToSocket()
+        private void SendMessageToSocket()
         {
-            _requestGenerator = new RequestGenerator();
-            string requestToServer = _requestGenerator.GenerateRequest((int)RequestGenerator.RequestCode.billList, _userLogin);
-            byte[] msg = Encoding.ASCII.GetBytes(requestToServer);
-            SocketClient.SendMessage(_sender, msg);
+            RequestGenerator _requestGenerator = new RequestGenerator(RequestGenerator.RequestCode.newBill, _login);
+            SocketClient.SendMessage(_requestGenerator.Message);
         }
 
-        public override void RecieveMessageFromSocket()
+        private void RecieveMessageFromSocket()
         {
-            string answer = SocketClient.RecieveMessage(_sender);
-            _responseHandler = new ResponseHandler();
-
-            List<string> billList = _responseHandler.ResposeHandlerToList(answer);
-            _responseHandler.ResponseHandlerListToBill(billList);
-            _answer = _responseHandler.AnswerList;
+            _answer = SocketClient.RecieveMessage();
         }
     }
 }

@@ -1,21 +1,13 @@
-﻿using Client;
-using Client.Utils;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Client.Utils;
 
 namespace Client.Services
 {
-    class CloseBillService : AbstractService<int>
+    class CloseBillService : AbstractService
     {
         private int _billId;
-        private Socket _sender;
-        private int _answer;
+        private string _answer;
 
-        public override int Answer
+        public override string Answer
         {
             get
             {
@@ -23,24 +15,22 @@ namespace Client.Services
             }
         }
 
-        public CloseBillService(Bill bill, Socket sender)
+        public CloseBillService(Bill bill)
         {
             _billId = bill.IdBill;
-            _sender = sender;
+            SendMessageToSocket();
+            RecieveMessageFromSocket();
         }
 
-        public override void RecieveMessageFromSocket()
+        private void RecieveMessageFromSocket()
         {
-            string answer = SocketClient.RecieveMessage(_sender);
-            int.TryParse(answer, out _answer);
+            _answer = SocketClient.RecieveMessage();
         }
 
-        public override void SendMessageToSocket()
+        private void SendMessageToSocket()
         {
-            RequestGenerator request = new RequestGenerator();
-            string requestToServer = request.GenerateRequest((int)RequestGenerator.RequestCode.closeBill, _billId);
-            byte[] msg = Encoding.ASCII.GetBytes(requestToServer);
-            SocketClient.SendMessage(_sender, msg);
+            RequestGenerator _requestGenerator = new RequestGenerator(RequestGenerator.RequestCode.closeBill, _billId.ToString());
+            SocketClient.SendMessage(_requestGenerator.Message);
         }
     }
 }

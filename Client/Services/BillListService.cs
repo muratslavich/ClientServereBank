@@ -18,7 +18,7 @@ namespace Client.Services
         private string _answer;
         private string _login;
 
-        public override string Answer
+        public override string Answer 
         {
             get
             {

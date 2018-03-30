@@ -24,21 +24,17 @@ namespace Client.Menu
             }
         }
 
-        public void ShowList(List<Bill> billList)
+        public BillListMenu(string answer)
         {
+            _billList = new ResponseHandler().ResponseHandlerListToBill(answer);
+
             Console.Clear();
             ShowMessage(_billListMenuMessage);
-            foreach (var item in billList)
+            foreach (var item in _billList)
             {
                 ShowMessage(item.ToString());
             }
             int.TryParse(Console.ReadLine(), out _input);
-        }
-
-        public void SepareteAnswer(string answer)
-        {
-            ResponseHandler handler = new ResponseHandler();
-            _billList = handler.ResponseHandlerListToBill(answer);
         }
     }
 }

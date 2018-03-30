@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Client.Utils;
+using System;
 using System.Collections.Generic;
 
 namespace Client.Menu
@@ -10,9 +11,10 @@ namespace Client.Menu
 
         public override int Input { get; set; }
 
-        public TransactionListMenu(List<Transaction> trasactionList)
+        public TransactionListMenu(string trasactionList)
         {
-            _transactionList = trasactionList;
+            _transactionList = new ResponseHandler().ResponseHandlerListToTransaction(trasactionList);
+
             ShowMessage(_transactionListMessage);
             foreach (var item in _transactionList)
             {

@@ -10,25 +10,6 @@ namespace Client.Utils
         private char _delimiter = ',';
         private readonly char _innerDelimitter = ';';
 
-        public List<string> ResposeHandlerToList(string answer)
-        {
-            List<string> listBill = answer.Split(_delimiter).ToList();
-            return listBill;
-        }
-
-        public Bill ResponseHandlerToBill(string answer)
-        {
-            Bill bill = new Bill();
-            string[] separeted  = answer.Split(';');
-
-            bill.IdBill = int.Parse(separeted[0]);
-            bill.Login = separeted[1];
-            bill.CreateDate = DateTime.Parse(separeted[2]);
-            bill.Balance = Decimal.Parse(separeted[3]);
-
-            return bill;
-        }
-
         public List<Bill> ResponseHandlerListToBill(string answer)
         {
             List<Bill> billList = new List<Bill>();
@@ -48,10 +29,12 @@ namespace Client.Utils
             return billList;
         }
 
-        public List<Transaction> ResponseHandlerToTransaction(List<string> transactions)
+        public List<Transaction> ResponseHandlerListToTransaction(string transactions)
         {
             List<Transaction> transactionsList = new List<Transaction>();
-            foreach (var item in transactions)
+            List<string> list = transactions.Split(_delimiter).ToList();
+
+            foreach (var item in list)
             {
                 string[] separatedTransaction = item.Split(';');
                 Transaction transaction = new Transaction();

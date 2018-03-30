@@ -4,7 +4,6 @@ namespace Client.Menu
 {
     class CloseBillMenu : AbstractMenu<int>
     {
-        private int _idBill;
         private int _input;
         private string _closeBillMenuMessage = "Меню закрытия счета\n" +
             "Подтвердите закрытие счета\n" +

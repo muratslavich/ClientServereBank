@@ -1,51 +1,39 @@
-﻿//using Client;
-//using Client.Utils;
-//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Net.Sockets;
-//using System.Text;
-//using System.Threading.Tasks;
+﻿using Client.Utils;
+using System.Collections.Generic;
+using System.Net.Sockets;
+using System.Text;
 
-//namespace Client.Services
-//{
-//    class TransactionListService : AbstractService<List<Transaction>>
-//    {
-//        private int _billId;
-//        private Socket _sender;
-//        private RequestGenerator _requestGenerator;
-//        private ResponseHandler _responseHandler;
-//        private List<Transaction> _answer;
+namespace Client.Services
+{
+    class TransactionListService : AbstractService
+    {
+        private string _answer;
+        private string _idBill;
 
-//        public override List<Transaction> Answer
-//        {
-//            get
-//            {
-//                return _answer;
-//            }
-//        }
+        public override string Answer
+        {
+            get
+            {
+                return _answer;
+            }
+        }
 
-//        public TransactionListService(Bill bill, Socket sender)
-//        {
-//            _billId = bill.IdBill;
-//            _sender = sender;
-//        }
+        public TransactionListService(string idBill)
+        {
+            _idBill = idBill;
+            SendMessageToSocket();
+            RecieveMessageFromSocket();
+        }
 
-//        public override void RecieveMessageFromSocket()
-//        {
-//            string answer = SocketClient.RecieveMessage(_sender);
-//            _responseHandler = new ResponseHandler();
+        private void RecieveMessageFromSocket()
+        {
+            _answer = SocketClient.RecieveMessage();
+        }
 
-//            List<string> transactionList = _responseHandler.ResposeHandlerToList(answer);
-//            _answer = _responseHandler.ResponseHandlerToTransaction(transactionList);
-//        }
-
-//        public override void SendMessageToSocket()
-//        {
-//            _requestGenerator = new RequestGenerator();
-//            string requestToServer = _requestGenerator.GenerateRequest((int)RequestGenerator.RequestCode.transactionList, _billId);
-//            byte[] msg = Encoding.ASCII.GetBytes(requestToServer);
-//            SocketClient.SendMessage(_sender, msg);
-//        }
-//    }
-//}
+        private void SendMessageToSocket()
+        {
+            RequestGenerator _requestGenerator = new RequestGenerator(RequestGenerator.RequestCode.newBill, _idBill);
+            SocketClient.SendMessage(_requestGenerator.Message);
+        }
+    }
+}

@@ -1,11 +1,9 @@
 ﻿using Client;
 using Client.Menu;
 using Client.Services;
+using Client.Utils;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BankClientServer
 {
@@ -125,13 +123,23 @@ namespace BankClientServer
             AbstractService service = new BillListService(user.Login);
             string answer = service.Answer;
 
-            if (answer.IndexOf("<0x>") > -1) Console.WriteLine(answer);
+            if (answer.IndexOf("<0x>") > -1) Console.WriteLine(answer); // .... to remake output without console
             else
             {
-                AbstractMenu<int> menu = new BillListMenu();
+                AbstractMenu<int> menu = new BillListMenu(answer);
 
-            }            
-            
+                List<Bill> billList = new ResponseHandler().ResponseHandlerListToBill(answer);
+
+                foreach (var item in billList)
+                {
+                    if (menu.Input == item.IdBill)
+                    {
+                        _del = BillMenu;
+                        _del.Invoke();
+                    }
+                }
+            }
+
         }
 
         public void NewBill()
@@ -189,7 +197,18 @@ namespace BankClientServer
 
         public void ListOfTransactions()
         {
+            AbstractService service = new TransactionListService(user.CurrentBill.IdBill.ToString());
+            string answer = service.Answer;
 
+            if (answer.IndexOf("<0x>") > -1) Console.WriteLine(answer); // .... to remake output without console
+            else
+            {
+                AbstractMenu<int> menu = new TransactionListMenu(answer);
+
+                _del = BillMenu;
+                _del.Invoke();
+
+            }
         }
 
         public void Transfer()

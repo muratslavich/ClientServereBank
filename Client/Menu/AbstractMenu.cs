@@ -5,7 +5,7 @@ namespace Client.Menu
     abstract class AbstractMenu<T>
     {
         public abstract T Input { get; set; }
-        public void ShowMessage(string mess)
+        public virtual void ShowMessage(string mess)
         {
             Console.WriteLine(mess);
         }

@@ -22,9 +22,10 @@ namespace Client.Menu
 
         public AuthMenu()
         {
-            ShowMessage("Введите логин");
+            Console.Clear();
+            ShowMessage("       Введите логин");
             _login = Console.ReadLine();
-            ShowMessage("Введите пароль");
+            ShowMessage("       Введите пароль");
             _password = Console.ReadLine();
             Input[0] = _login;
             Input[1] = _password;

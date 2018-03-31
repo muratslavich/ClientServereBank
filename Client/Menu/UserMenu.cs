@@ -5,7 +5,7 @@ namespace Client.Menu
     class UserMenu : AbstractMenu<int>
     {
         private int _input;
-        private const string _userMenuMessage = "Меню пользователя\n" +
+        private const string _userMenuMessage = "           Меню пользователя\n" +
             "1-Открыть список счетов\n" +
             "2-Открыть новый счет\n" +
             "3-Выход";
@@ -24,6 +24,7 @@ namespace Client.Menu
 
         public UserMenu()
         {
+            Console.Clear();
             ShowMessage(_userMenuMessage);
             int.TryParse(Console.ReadLine(), out _input);
         }

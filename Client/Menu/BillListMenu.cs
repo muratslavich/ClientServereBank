@@ -8,9 +8,9 @@ namespace Client.Menu
     {
         private List<Bill> _billList;
         private int _input;
-        private readonly string _billListMenuMessage = "Меню Список счетов\n" +
-            "1-Введите Id счета для выбора\n" +
-            "2-Возврат в Меню Пользователя";
+        private readonly string _billListMenuMessage = "            Меню Список счетов\n" +
+            "       Id-Введите Id счета для выбора\n" +
+            "       2-Возврат в Меню Пользователя";
 
         public override int Input
         {

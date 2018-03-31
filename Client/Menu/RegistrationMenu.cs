@@ -26,19 +26,19 @@ namespace Client.Menu
         public RegistrationMenu()
         {
             Console.Clear();
-            Console.WriteLine("Введите ваше Имя");
+            Console.WriteLine("     Введите ваше Имя");
             _name = Console.ReadLine();
             _input[0] = _name;
-            Console.WriteLine("Введите вашу Фамилию");
+            Console.WriteLine("     Введите вашу Фамилию");
             _surname = Console.ReadLine();
             _input[1] = _surname;
-            Console.WriteLine("Введите дату рождения");
+            Console.WriteLine("     Введите дату рождения");
             _birthDate = Console.ReadLine();
             _input[2] = _birthDate;
-            Console.WriteLine("Введите ваш логин");
+            Console.WriteLine("     Введите ваш логин");
             _login = Console.ReadLine();
             _input[3] = _login;
-            Console.WriteLine("Введите ваш пароль");
+            Console.WriteLine("     Введите ваш пароль");
             _password = Console.ReadLine();
             _input[4] = _password;
         }

@@ -5,7 +5,7 @@ namespace Client.Menu
     class CloseBillMenu : AbstractMenu<int>
     {
         private int _input;
-        private string _closeBillMenuMessage = "Меню закрытия счета\n" +
+        private string _closeBillMenuMessage = "            Меню закрытия счета\n" +
             "Подтвердите закрытие счета\n" +
             "1-Да\n" +
             "0-Нет";
@@ -24,6 +24,7 @@ namespace Client.Menu
 
         public CloseBillMenu(Bill infoBill)
         {
+            Console.Clear();
             ShowMessage(infoBill.ToString());
             ShowMessage(_closeBillMenuMessage);
             int.TryParse(Console.ReadLine(), out _input);

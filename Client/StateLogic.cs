@@ -182,6 +182,8 @@ namespace BankClientServer
             {
                 AbstractService creater = new CloseBillService(_user.CurrentBill);
                 _user.CurrentBill = null;
+                _del = UserMenu;
+                _del.Invoke();
                 // .... check answer for errors
             };
 

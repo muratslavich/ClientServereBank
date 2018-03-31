@@ -5,7 +5,7 @@ namespace Client.Menu
     class EntryMenu : AbstractMenu<int>
     {
         private int _input;
-        private const string _entryMessage = "Меню входа\n" +
+        private const string _entryMessage = "          Меню входа\n" +
             "1-Авторизация\n" +
             "2-Регистрация\n" +
             "3-Выход";

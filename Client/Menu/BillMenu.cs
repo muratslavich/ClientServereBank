@@ -6,7 +6,7 @@ namespace Client.Menu
     class BillMenu : AbstractMenu<int>
     {
         private int _input;
-        private readonly string _billMenuMessage = "Меню Счета\n" +
+        private readonly string _billMenuMessage = "            Меню Счета\n" +
             "1-Перевести\n" +
             "2-Выписка\n" +
             "3-Закрыть Счет\n" +
@@ -26,6 +26,7 @@ namespace Client.Menu
 
         public BillMenu()
         {
+            Console.Clear();
             ShowMessage(_billMenuMessage);
             int.TryParse(Console.ReadLine(), out _input);
         }

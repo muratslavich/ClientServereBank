@@ -9,7 +9,7 @@ namespace BankClientServer
 {
     class StateLogic
     {
-        private User user;
+        private User _user;
 
         delegate void DoMenuState();
         DoMenuState _del;
@@ -97,6 +97,7 @@ namespace BankClientServer
             if (answer.IndexOf("<0x>") > -1) menu.ShowMessage(answer);
             else
             {
+                _user = new User(userInput[0]); //login
                 _del = UserMenu;
                 _del.Invoke();
             }
@@ -113,6 +114,7 @@ namespace BankClientServer
             if (answer.IndexOf("<0x>") > -1) menu.ShowMessage(answer);
             else
             {
+                _user = new User(userInput[3]);
                 _del = UserMenu;
                 _del.Invoke();
             }
@@ -120,7 +122,7 @@ namespace BankClientServer
 
         public void ListOfBill()
         {
-            AbstractService service = new BillListService(user.Login);
+            AbstractService service = new BillListService(_user.Login);
             string answer = service.Answer;
 
             if (answer.IndexOf("<0x>") > -1) Console.WriteLine(answer); // .... to remake output without console
@@ -134,6 +136,7 @@ namespace BankClientServer
                 {
                     if (menu.Input == item.IdBill)
                     {
+                        _user.CurrentBill = item;
                         _del = BillMenu;
                         _del.Invoke();
                     }
@@ -150,7 +153,7 @@ namespace BankClientServer
             // hiden local method
             DoMenuState doThis = delegate
             {
-                AbstractService creater = new CreateBillService(user);
+                AbstractService creater = new CreateBillService(_user.Login);
                 // .... check answer for errors
             };
 
@@ -160,6 +163,7 @@ namespace BankClientServer
                 { 0, UserMenu },
             };
 
+            _intersection.TryGetValue(userKey, out _del);
             if (_del != null) _del.Invoke();
             else
             {
@@ -171,12 +175,13 @@ namespace BankClientServer
 
         public void CloseBill()
         {
-            AbstractMenu<int> menu = new CloseBillMenu(user.CurrentBill);
+            AbstractMenu<int> menu = new CloseBillMenu(_user.CurrentBill);
             int userKey = menu.Input;
 
             DoMenuState doThis = delegate
             {
-                AbstractService creater = new CloseBillService(user.CurrentBill);
+                AbstractService creater = new CloseBillService(_user.CurrentBill);
+                _user.CurrentBill = null;
                 // .... check answer for errors
             };
 
@@ -186,6 +191,7 @@ namespace BankClientServer
                 { 0, UserMenu },
             };
 
+            _intersection.TryGetValue(userKey, out _del);
             if (_del != null) _del.Invoke();
             else
             {
@@ -197,7 +203,7 @@ namespace BankClientServer
 
         public void ListOfTransactions()
         {
-            AbstractService service = new TransactionListService(user.CurrentBill.IdBill.ToString());
+            AbstractService service = new TransactionListService(_user.CurrentBill.IdBill.ToString());
             string answer = service.Answer;
 
             if (answer.IndexOf("<0x>") > -1) Console.WriteLine(answer); // .... to remake output without console
@@ -213,7 +219,7 @@ namespace BankClientServer
 
         public void Transfer()
         {
-            AbstractMenu<string[]> menu = new TransferMenu(user.CurrentBill.IdBill);
+            AbstractMenu<string[]> menu = new TransferMenu(_user.CurrentBill.IdBill);
             string[] userInput = menu.Input;
 
             AbstractService service = new TransferService(userInput);

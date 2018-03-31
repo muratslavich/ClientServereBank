@@ -32,7 +32,7 @@ namespace Client.Utils
 
         public RequestGenerator(RequestCode code, string userInput)
         {
-            GenerateRequest((int)code, userInput);
+            Message = GenerateRequest((int)code, userInput);
         }
 
         private void GenerateRequest(int req, string[] train)
@@ -51,7 +51,6 @@ namespace Client.Utils
             Message = sb.ToString();
         }
 
-        // overload -----------------------------------------
         public string GenerateRequest(int req, string train)
         {
             StringBuilder sb = new StringBuilder();
@@ -60,9 +59,5 @@ namespace Client.Utils
             return request;
         }
 
-        public string GenerateRequest(int req, int train)
-        {
-            return req + "," + train;
-        }
     }
 }

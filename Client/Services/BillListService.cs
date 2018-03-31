@@ -35,7 +35,7 @@ namespace Client.Services
 
         private void SendMessageToSocket()
         {
-            RequestGenerator _requestGenerator = new RequestGenerator(RequestGenerator.RequestCode.newBill, _login);
+            RequestGenerator _requestGenerator = new RequestGenerator(RequestGenerator.RequestCode.billList, _login);
             SocketClient.SendMessage(_requestGenerator.Message);
         }
 

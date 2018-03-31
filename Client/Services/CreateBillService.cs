@@ -5,7 +5,7 @@ namespace Client.Services
     class CreateBillService : AbstractService
     {
         private string _answer;
-        private User _user;
+        private string _user;
 
         public override string Answer
         {
@@ -15,9 +15,9 @@ namespace Client.Services
             }
         }
 
-        public CreateBillService(User user)
+        public CreateBillService(string login)
         {
-            _user = user;
+            _user = login;
             SendMessageToSocket();
             RecieveMessageFromSocket();
         }
@@ -29,7 +29,7 @@ namespace Client.Services
 
         private void SendMessageToSocket()
         {
-            RequestGenerator _requestGenerator = new RequestGenerator(RequestGenerator.RequestCode.newBill, _user.Login);
+            RequestGenerator _requestGenerator = new RequestGenerator(RequestGenerator.RequestCode.newBill, _user);
             SocketClient.SendMessage(_requestGenerator.Message);
         }
     }

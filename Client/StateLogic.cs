@@ -69,9 +69,9 @@ namespace BankClientServer
 
             _intersection = new Dictionary<int, DoMenuState>
             {
-                { 1, ListOfTransactions },
-                { 2, CloseBill },
-                { 3, Transfer },
+                { 2, ListOfTransactions },
+                { 3, CloseBill },
+                { 1, Transfer },
                 { 0, UserMenu }
             };
 

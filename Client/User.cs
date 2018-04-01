@@ -17,57 +17,11 @@ namespace Client
 {
     class User
     {
-        private string _name;
-        private string _surname;
-        private DateTime _birthDate;
-        private string _login;
-        private Bill _currentBill;
-
-        public string Name
-        {
-            get { return _name; }
-            private set
-            {
-                _name = value;
-            }
-        }
-        public string Surname
-        {
-            get { return _surname; }
-            private set
-            {
-                _surname = value;
-            }
-        }
-        public DateTime BirthDate
-        {
-            get { return _birthDate; }
-            private set
-            {
-                _birthDate = value;
-            }
-        }
-        public string Login
-        {
-            get { return _login; }
-            set
-            {
-                _login = value;
-            }
-        }
-
-        internal Bill CurrentBill
-        {
-            get
-            {
-                return _currentBill;
-            }
-
-            set
-            {
-                _currentBill = value;
-            }
-        }
+        public string Name { get; private set; }
+        public string Surname { get; private set; }
+        public DateTime BirthDate { get; private set; }
+        public string Login { get; set; }
+        public Bill CurrentBill { get; set; }
 
         public User(string name, string surname, DateTime birthDate, string login)
         {

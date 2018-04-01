@@ -7,7 +7,6 @@ namespace Client.Utils
 {
     class SocketClient
     {
-        
         // incoming data from server
         public static string data = null;
 

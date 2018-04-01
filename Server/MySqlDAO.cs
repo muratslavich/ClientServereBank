@@ -113,7 +113,7 @@ namespace Server
             string resultCheck = null;
 
             // query
-            string query = "SELECT Account.login, Account.pass FROM Account WHERE login=" + "'" + login + "'" + "AND pass=" + "'" + pass + "'" + "";
+            string query = "SELECT Account.login, Account.pass FROM Account WHERE login=" + "'" + login + "';";
             MySqlCommand command = new MySqlCommand(query, conn);
             MySqlDataReader reader = command.ExecuteReader();
 
@@ -127,11 +127,15 @@ namespace Server
                     resultCheck = "1";
                 }
 
-                else
+                else if (login == checkLogin && pass != checkPass)
                 {
-                    resultCheck = "<0x01>";
+                    resultCheck = "<0x02>";
                 }
-                // .... add another check !!!!!!!!!!!!!!!
+            }
+
+            if (!reader.HasRows)
+            {
+                resultCheck = "<0x01>";
             }
 
             return resultCheck;

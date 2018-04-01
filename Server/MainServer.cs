@@ -61,7 +61,7 @@ namespace Server
                     data += Encoding.ASCII.GetString(bytes, 0, bytesRec);
 
                     // Show the data on the console.
-                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine("Text received : {0}", data);
                     Console.ResetColor();
 

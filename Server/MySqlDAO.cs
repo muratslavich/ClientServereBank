@@ -32,7 +32,7 @@ namespace Server
             string bills = null;
 
             string login = _separetedData[1];
-            string query = "SELECT Account.id_Account FROM Account WHERE login='" + login + "';";
+            string query = $"SELECT Account.id_Account FROM Account WHERE login='{login}';";
             MySqlCommand command = new MySqlCommand(query, conn);
             MySqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
@@ -43,7 +43,7 @@ namespace Server
             DbClose();
             DbConnect();
 
-            string queryToBills = "SELECT * FROM bank.bill WHERE Account_id_Account='" + accId + "';";
+            string queryToBills = $"SELECT * FROM bank.bill WHERE Account_id_Account='{accId}';";
             MySqlCommand commandToBills = new MySqlCommand(queryToBills, conn);
             MySqlDataReader readerToBills = commandToBills.ExecuteReader();
 
@@ -62,6 +62,8 @@ namespace Server
             }
 
             bills = String.Join(",", billsList);
+
+            if (billsList.Count == 0) bills = "<0x04>";
 
             return bills;
 
@@ -85,22 +87,19 @@ namespace Server
         internal string DoRegistration(string[] _separetedData)
         {
             string resultRegistration = null;
-
-            StringBuilder sb = new StringBuilder();
-            sb.Append("INSERT INTO Account( name, surname, birth_date, login, pass )   ");
-            sb.Append("VALUES ( '" + _separetedData[1] + "',  ");
-            sb.Append("'" + _separetedData[2] + "',  ");
-            sb.Append("'" + _separetedData[3] + "',  ");
-            sb.Append("'" + _separetedData[4] + "',  ");
-            sb.Append("'" + _separetedData[5] + "'   ");
-            sb.Append(");");
-
-            string query = sb.ToString();
+            string query = $"INSERT INTO Account( name, surname, birth_date, login, pass ) VALUES ( '{_separetedData[1]}', '{_separetedData[2]}', '{_separetedData[3]}', '{_separetedData[4]}', '{_separetedData[5]}');";
 
             MySqlCommand command = new MySqlCommand(query, conn);
-            command.ExecuteNonQuery();
 
-            resultRegistration = "1";
+            try
+            {
+                int affected = command.ExecuteNonQuery();
+                if (affected > 0) resultRegistration = "1";
+            }
+            catch (MySqlException)
+            {
+                resultRegistration = "<0x03>";
+            }
 
             return resultRegistration;
         }
@@ -113,7 +112,7 @@ namespace Server
             string resultCheck = null;
 
             // query
-            string query = "SELECT Account.login, Account.pass FROM Account WHERE login=" + "'" + login + "';";
+            string query = $"SELECT Account.login, Account.pass FROM Account WHERE login='{login}';";
             MySqlCommand command = new MySqlCommand(query, conn);
             MySqlDataReader reader = command.ExecuteReader();
 
@@ -132,7 +131,7 @@ namespace Server
                     resultCheck = "<0x02>";
                 }
             }
-
+            // SQL return null rows
             if (!reader.HasRows)
             {
                 resultCheck = "<0x01>";
@@ -156,18 +155,9 @@ namespace Server
 
             float recieverBalance = 0;
 
-            string checkRecipientBillQuery = "SELECT COUNT(*) FROM bank.transactions WHERE Bill_id_Bill='" + recipientBillId + "';";
-            string checkAmount = "SELECT balance FROM bank.bill WHERE id_Bill='" + recieverBillId + "';";
-
-            StringBuilder sb = new StringBuilder();
-            sb.Append("INSERT INTO Transactions ( recipient_id, Bill_id_Bill, amount, transact_date ) ");
-            sb.Append("VALUES ( '" + recipientBillId + "',  ");
-            sb.Append("'" + recieverBillId + "',  ");
-            sb.Append("'" + amount + "',  ");
-            sb.Append("current_timestamp() ");
-            sb.Append(");");
-
-            string addTransaction = sb.ToString();
+            string checkRecipientBillQuery = $"SELECT COUNT(*) FROM bank.transactions WHERE Bill_id_Bill='{recipientBillId}';";
+            string checkAmount = $"SELECT balance FROM bank.bill WHERE id_Bill='{recieverBillId}';";
+            string addTransaction = $"INSERT INTO Transactions ( recipient_id, Bill_id_Bill, amount, transact_date ) VALUES ( '{recipientBillId}', '{recieverBillId}', '{amount}', current_timestamp() );";
 
             MySqlCommand command = new MySqlCommand(checkRecipientBillQuery, conn);
             MySqlDataReader reader = command.ExecuteReader();
@@ -216,7 +206,7 @@ namespace Server
             string billId = separetedData[1];
             string transactions = null;
 
-            string queryToBills = "SELECT * FROM bank.transactions WHERE Bill_id_Bill='" + billId + "';";
+            string queryToBills = $"SELECT * FROM bank.transactions WHERE Bill_id_Bill='{billId}';";
             MySqlCommand command = new MySqlCommand(queryToBills, conn);
             MySqlDataReader reader = command.ExecuteReader();
 
@@ -236,6 +226,11 @@ namespace Server
 
             transactions = String.Join(",", transactList);
 
+            if (transactList.Count == 0)
+            {
+                transactions = "<0x07>";
+            }
+
             return transactions;
         }
 
@@ -245,6 +240,7 @@ namespace Server
             MySqlCommand command = new MySqlCommand(query, conn);
             command.ExecuteNonQuery();
 
+            // .... to do check for remaining balance
             return "1";
         }
 

@@ -1,4 +1,5 @@
-﻿using Client;
+﻿using BankClientServer.Utils;
+using Client;
 using Client.Menu;
 using Client.Services;
 using Client.Utils;
@@ -94,7 +95,7 @@ namespace BankClientServer
             AbstractService service = new AuthService(userInput);
             string answer = service.Answer;
 
-            if (answer.IndexOf("<0x>") > -1) menu.ShowMessage(answer);
+            if (answer.IndexOf("<0x>") > -1) menu.ShowMessage(new ErrorsHandler().GetErrorMessage(answer));
             else
             {
                 _user = new User(userInput[0]); //login
@@ -111,7 +112,7 @@ namespace BankClientServer
             AbstractService service = new RegistrationService(userInput);
             string answer = service.Answer;
 
-            if (answer.IndexOf("<0x>") > -1) menu.ShowMessage(answer);
+            if (answer.IndexOf("<0x>") > -1) menu.ShowMessage(new ErrorsHandler().GetErrorMessage(answer));
             else
             {
                 _user = new User(userInput[3]);
@@ -125,7 +126,7 @@ namespace BankClientServer
             AbstractService service = new BillListService(_user.Login);
             string answer = service.Answer;
 
-            if (answer.IndexOf("<0x>") > -1) Console.WriteLine(answer); // .... to remake output without console
+            if (answer.IndexOf("<0x>") > -1) Console.WriteLine(new ErrorsHandler().GetErrorMessage(answer)); // .... to remake output without console
             else
             {
                 AbstractMenu<int> menu = new BillListMenu(answer);
@@ -208,7 +209,7 @@ namespace BankClientServer
             AbstractService service = new TransactionListService(_user.CurrentBill.IdBill.ToString());
             string answer = service.Answer;
 
-            if (answer.IndexOf("<0x>") > -1) Console.WriteLine(answer); // .... to remake output without console
+            if (answer.IndexOf("<0x>") > -1) Console.WriteLine(new ErrorsHandler().GetErrorMessage(answer)); // .... to remake output without console
             else
             {
                 AbstractMenu<int> menu = new TransactionListMenu(answer);
@@ -227,7 +228,7 @@ namespace BankClientServer
             AbstractService service = new TransferService(userInput);
             string answer = service.Answer;
 
-            if (answer.IndexOf("<0x>") > -1) menu.ShowMessage(answer);
+            if (answer.IndexOf("<0x>") > -1) menu.ShowMessage(new ErrorsHandler().GetErrorMessage(answer));
 
             _del = BillMenu;
             _del.Invoke();

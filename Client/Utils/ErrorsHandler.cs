@@ -23,14 +23,9 @@ namespace BankClientServer.Utils
             {"0x09" , "Счет получателя не существет ..." },
         };
 
-        public ErrorsHandler(string errorCode)
+        public string GetErrorMessage(string errorCode)
         {
-            _errorCode = errorCode;
-        }
-
-        public string GetErrorMessage()
-        {
-            _errorsMap.TryGetValue(_errorCode, out _errorMessage);
+            _errorsMap.TryGetValue(errorCode, out _errorMessage);
             return _errorMessage;
         }
     }

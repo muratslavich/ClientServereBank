@@ -11,7 +11,6 @@ namespace Client
             //try
             //{
                SocketClient.StartClient();
-               //ClientProgramm client = new ClientProgramm();
 
                 while (true)
                 {

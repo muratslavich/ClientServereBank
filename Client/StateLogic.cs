@@ -142,7 +142,7 @@ namespace BankClientServer
             }
             else
             {
-                AbstractMenu<int> menu = new BillListMenu(answer);
+                AbstractMenu<int> menu = new BillListMenu(answer, _user.Login);
 
                 List<Bill> billList = new ResponseHandler().ResponseHandlerListToBill(answer);
 

@@ -52,11 +52,10 @@ namespace Server
             while (readerToBills.Read())
             {
                 StringBuilder sb = new StringBuilder();
-                for (int i = 0; i < 3; i++)
-                {
-                    sb.Append(readerToBills.GetString(i) + ";");
-                }
-                sb.Append(readerToBills.GetValue(3).ToString());
+
+                sb.Append(readerToBills.GetString(0) + ";");
+                sb.Append(readerToBills.GetDateTime("create_date").ToString("dd/MM/yyyy") + ";");
+                sb.Append(readerToBills.GetString(2));
 
                 billsList.Add(sb.ToString());
             }
@@ -215,12 +214,12 @@ namespace Server
             while (reader.Read())
             {
                 StringBuilder sb = new StringBuilder();
-                for (int i = 0; i < 4; i++)
-                {
-                    sb.Append(reader.GetValue(i).ToString() + ";");
-                }
-                sb.Append(reader.GetValue(4).ToString());
 
+                sb.Append(reader.GetString("transaction_id") + ";");
+                sb.Append(reader.GetString("recipient_id") + ";");
+                sb.Append(reader.GetString("amount") + ";");
+                sb.Append(reader.GetString("transact_date"));
+                
                 transactList.Add(sb.ToString());
             }
 

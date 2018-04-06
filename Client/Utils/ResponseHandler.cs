@@ -40,10 +40,9 @@ namespace Client.Utils
                 Transaction transaction = new Transaction();
 
                 transaction.TransactId = separatedTransaction[0];
-                transaction.RecieveId = separatedTransaction[2];
-                transaction.SenderId = separatedTransaction[1];
-                transaction.Amount = separatedTransaction[3];
-                transaction.Date = separatedTransaction[4];
+                transaction.RecieveId = separatedTransaction[1];
+                transaction.Amount = separatedTransaction[2];
+                transaction.Date = separatedTransaction[3];
 
                 transactionsList.Add(transaction);
             }

@@ -10,7 +10,7 @@ namespace Client.Menu
         private int _input;
         private readonly string _billListMenuMessage = "            Меню Список счетов\n" +
             "       Id-Введите Id счета для выбора\n" +
-            "       2-Возврат в Меню Пользователя";
+            "       2-Возврат в Меню Пользователя\n";
 
         public override int Input
         {
@@ -24,15 +24,19 @@ namespace Client.Menu
             }
         }
 
-        public BillListMenu(string answer)
+        public BillListMenu(string answer, string login)
         {
             _billList = new ResponseHandler().ResponseHandlerListToBill(answer);
 
             Console.Clear();
+            ShowMessage(login);
             ShowMessage(_billListMenuMessage);
+
+            Console.WriteLine("{0,-5} {1,10} {2,10}\n", "Счет", "Дата создания", "Остаток на счете");
+
             foreach (var item in _billList)
             {
-                ShowMessage(item.ToString());
+                Console.WriteLine("{0,-5} {1,10} {2,10}", item.IdBill, item.CreateDate, item.Balance);
             }
             int.TryParse(Console.ReadLine(), out _input);
         }

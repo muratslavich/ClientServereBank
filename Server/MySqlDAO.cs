@@ -32,7 +32,7 @@ namespace Server
             string bills = null;
 
             string login = _separetedData[1];
-            string query = $"SELECT Account.id_Account FROM Account WHERE login='{login}';";
+            string query = $"SELECT Account.account_id FROM Account WHERE login='{login}';";
             MySqlCommand command = new MySqlCommand(query, conn);
             MySqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
@@ -156,7 +156,7 @@ namespace Server
             float recieverBalance = 0;
 
             string checkRecipientBillQuery = $"SELECT COUNT(*) FROM bank.transactions WHERE Bill_id_Bill='{recipientBillId}';";
-            string checkAmount = $"SELECT balance FROM bank.bill WHERE id_Bill='{recieverBillId}';";
+            string checkAmount = $"SELECT balance FROM bank.bill WHERE bill_id='{recieverBillId}';";
             string addTransaction = $"INSERT INTO Transactions ( recipient_id, Bill_id_Bill, amount, transact_date ) VALUES ( '{recipientBillId}', '{recieverBillId}', '{amount}', current_timestamp() );";
 
             MySqlCommand command = new MySqlCommand(checkRecipientBillQuery, conn);
@@ -236,7 +236,7 @@ namespace Server
 
         internal string CloseBillQuery(string[] separetedData)
         {
-            string query = "DELETE FROM bank.bill WHERE id_Bill='" + separetedData[1] + "';";
+            string query = $"DELETE FROM bank.bill WHERE bill_id='{separetedData[1]}';";
             MySqlCommand command = new MySqlCommand(query, conn);
             command.ExecuteNonQuery();
 
@@ -250,7 +250,7 @@ namespace Server
             int accId = 0;
 
             string login = separetedData[1];
-            string query = "SELECT Account.id_Account FROM Account WHERE login='" + login + "';";
+            string query = $"SELECT Account.account_id FROM Account WHERE login='{login}';";
             MySqlCommand command = new MySqlCommand(query, conn);
             MySqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
@@ -261,7 +261,7 @@ namespace Server
             DbClose();
             DbConnect();
 
-            string queryToInsert = "INSERT INTO Bill (create_date, balance, Account_id_Account ) VALUES( CURRENT_DATE(), '0', '" + accId + "' );";
+            string queryToInsert = $"INSERT INTO Bill (create_date, balance, Account_id_Account ) VALUES( CURRENT_DATE(), '0', '{accId}' );";
             MySqlCommand commandToInsert = new MySqlCommand(queryToInsert, conn);
             commandToInsert.ExecuteNonQuery();
 

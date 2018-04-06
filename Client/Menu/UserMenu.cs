@@ -8,7 +8,7 @@ namespace Client.Menu
         private const string _userMenuMessage = "           Меню пользователя\n" +
             "1-Открыть список счетов\n" +
             "2-Открыть новый счет\n" +
-            "3-Выход";
+            "0-Выход";
 
         public override int Input
         {

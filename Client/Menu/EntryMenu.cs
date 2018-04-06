@@ -24,6 +24,7 @@ namespace Client.Menu
 
         public EntryMenu()
         {
+            Console.Clear();
             ShowMessage(_entryMessage);
             int.TryParse(Console.ReadLine(), out _input);
         }

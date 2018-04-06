@@ -21,8 +21,8 @@ namespace Client.Utils
                 string[] separetedBill = item.Split(_innerDelimitter);
 
                 bill.IdBill = int.Parse(separetedBill[0]);
-                bill.CreateDate = DateTime.Parse(separetedBill[1]);
-                bill.Balance = Decimal.Parse(separetedBill[2]);
+                bill.CreateDate = separetedBill[1]; // .... to do
+                bill.Balance = separetedBill[2];
 
                 billList.Add(bill);
             }
@@ -38,23 +38,12 @@ namespace Client.Utils
             {
                 string[] separatedTransaction = item.Split(';');
                 Transaction transaction = new Transaction();
-                int transactId = 0;
-                int recipientId = 0;
-                int billId = 0;
-                decimal amount = 0;
-                DateTime transactDate = new DateTime();
 
-                int.TryParse(separatedTransaction[0], out billId);
-                int.TryParse(separatedTransaction[1], out recipientId);
-                DateTime.TryParse(separatedTransaction[2], out transactDate);
-                decimal.TryParse(separatedTransaction[3], out amount);
-                int.TryParse(separatedTransaction[0], out transactId);
-
-                transaction.TransactId = transactId;
-                transaction.RecieveId = recipientId;
-                transaction.SenderId = billId;
-                transaction.Amount = amount;
-                transaction.Date = transactDate;
+                transaction.TransactId = separatedTransaction[0];
+                transaction.RecieveId = separatedTransaction[2];
+                transaction.SenderId = separatedTransaction[1];
+                transaction.Amount = separatedTransaction[3];
+                transaction.Date = separatedTransaction[4];
 
                 transactionsList.Add(transaction);
             }

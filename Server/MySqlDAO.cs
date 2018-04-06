@@ -54,7 +54,7 @@ namespace Server
                 StringBuilder sb = new StringBuilder();
                 for (int i = 0; i < 3; i++)
                 {
-                    sb.Append(readerToBills.GetValue(i).ToString() + ";");
+                    sb.Append(readerToBills.GetString(i) + ";");
                 }
                 sb.Append(readerToBills.GetValue(3).ToString());
 

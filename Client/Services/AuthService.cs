@@ -3,7 +3,6 @@
 /**
  * Service for send and recieve Auth message to/from Server
  * 
- * constructor(String[] input[login, password], sender)
  * */
 
 namespace Client.Services
@@ -24,6 +23,7 @@ namespace Client.Services
         public AuthService(string[] userInput)
         {
             _userInput = userInput;
+            _userInput[1] = CalculateHash(userInput[1]);
             SendMessageToSocket();
             RecieveMessageFromSocket();
         }

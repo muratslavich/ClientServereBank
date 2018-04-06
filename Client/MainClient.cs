@@ -8,8 +8,8 @@ namespace Client
     {
         static void Main(string[] args)
         {
-            //try
-            //{
+            try
+            {
                SocketClient.StartClient();
 
                 while (true)
@@ -27,13 +27,14 @@ namespace Client
                         Console.ReadLine();
                     }
                 }
+                
+            }
+            catch (Exception)
+            {
                 //SocketClient.RealeseSocket(SocketClient._sender);
-            //}
-            //catch (Exception se)
-            //{
-            //    Console.WriteLine("SocketException : {0}", se.ToString());
-            //    Console.ReadLine();
-            //}
+                Console.WriteLine("SocketException : Сервер отключен!!!");
+                Console.ReadLine();
+            }
         }
     }
 }

@@ -1,17 +1,13 @@
-﻿using Client.Utils;
+﻿using System;
+using Client.Utils;
+using System.Text;
+using System.Security.Cryptography;
 
 /**
  * Service for send and recieve registration message to/from Server
  * 
- * sending String message[2, name, surname, birthDate, login, password]
+ * sending String message[ name, surname, birthDate, login, password]
  * 
- * recieve int answer[5 || 4 || 1 ||]
- * 5-reg error
- * 4-existing login error
- * 1-registration complete
- * 0-uncorrect answer
- * 
- * constructor(String[] input[], sender)
  * */
 
 namespace Client.Services
@@ -32,6 +28,7 @@ namespace Client.Services
         public RegistrationService(string[] input)
         {
             _userInput = input;
+            _userInput[4] = CalculateHash(input[4]);
             SendMessageToSocket();
             RecieveMessageFromSocket();
         }

@@ -7,7 +7,7 @@ namespace Client.Utils
 {
     class ResponseHandler
     {
-        private char _delimiter = ',';
+        private char _delimiter = '|';
         private readonly char _innerDelimitter = ';';
 
         public List<Bill> ResponseHandlerListToBill(string answer)

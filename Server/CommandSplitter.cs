@@ -3,7 +3,7 @@
     class CommandSplitter
     {
         private string data;
-        private char delimiter = ',';
+        private char delimiter = '|';
 
         public CommandSplitter(string data)
         {

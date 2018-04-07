@@ -38,12 +38,12 @@ namespace Client.Utils
         private void GenerateRequest(int req, string[] train)
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append(req + ",");
+            sb.Append(req + "|");
 
             //добавляем все кроме последнего элемента
             for (int i = 0; i < train.Length-1; i++)
             {
-                sb.Append(train[i] + ",");
+                sb.Append(train[i] + "|");
             }
             //добавляем последний элемент
             sb.Append(train[train.Length-1]);
@@ -54,7 +54,7 @@ namespace Client.Utils
         public string GenerateRequest(int req, string train)
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append(req + "," + train);
+            sb.Append(req + "|" + train);
             string request = sb.ToString();
             return request;
         }

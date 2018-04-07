@@ -60,7 +60,7 @@ namespace Server
                 billsList.Add(sb.ToString());
             }
 
-            bills = String.Join(",", billsList);
+            bills = String.Join("|", billsList);
 
             if (billsList.Count == 0) bills = "<0x04>";
 
@@ -223,7 +223,7 @@ namespace Server
                 transactList.Add(sb.ToString());
             }
 
-            transactions = String.Join(",", transactList);
+            transactions = String.Join("|", transactList);
 
             if (transactList.Count == 0)
             {

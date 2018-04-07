@@ -74,6 +74,7 @@
             this.button1.TabIndex = 12;
             this.button1.Text = "Cancel";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // textBox2
             // 
@@ -186,7 +187,10 @@
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
+            this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(300, 600);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(300, 600);
             this.Name = "RegForm";
             this.Text = "RegForm";
             this.ResumeLayout(false);

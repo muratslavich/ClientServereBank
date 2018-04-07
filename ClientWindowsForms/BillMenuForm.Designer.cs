@@ -124,7 +124,10 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label1);
+            this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(300, 600);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(300, 600);
             this.Name = "BillMenuForm";
             this.Text = "BillMenuForm";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

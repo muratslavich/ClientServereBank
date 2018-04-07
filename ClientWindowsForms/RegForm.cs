@@ -16,5 +16,12 @@ namespace ClientWindowsForms
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            AuthForm auth = new AuthForm();
+            auth.Show();
+            this.Hide();
+        }
     }
 }

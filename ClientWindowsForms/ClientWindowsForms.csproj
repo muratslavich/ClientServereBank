@@ -58,6 +58,7 @@
     <Compile Include="BillMenuForm.Designer.cs">
       <DependentUpon>BillMenuForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormsLogic.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegForm.cs">

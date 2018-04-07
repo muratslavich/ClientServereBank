@@ -18,6 +18,7 @@ namespace Client
                     {
                         //client.StartProgram();
                         StateLogic logic = new StateLogic();
+                        logic.StartStateLogic();
                     
                     }
                     catch (InvalidOperationException ie)

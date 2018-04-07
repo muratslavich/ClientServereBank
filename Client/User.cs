@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace Client
 {
-    class User
+    public class User
     {
         public string Name { get; private set; }
         public string Surname { get; private set; }

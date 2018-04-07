@@ -16,7 +16,7 @@ namespace BankClientServer
         DoMenuState _del;
         private Dictionary<int, DoMenuState> _intersection;
         
-        public StateLogic()
+        public void StartStateLogic()
         {
             _del = Entry;
             _del.Invoke();

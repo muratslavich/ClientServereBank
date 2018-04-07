@@ -71,6 +71,8 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(260, 293);
             this.dataGridView1.TabIndex = 30;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dataGridView1.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseClick);
             // 
             // button2
             // 
@@ -156,7 +158,10 @@
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label1);
+            this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(300, 600);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(300, 600);
             this.Name = "UserMenuForm";
             this.Text = "UserMenuForm";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

@@ -34,6 +34,10 @@ namespace ClientWindowsForms
                 List<Bill> billList = new ResponseHandler().ResponseHandlerListToBill(answer);
                 bindingSource1.DataSource = billList;
                 dataGridView1.DataSource = bindingSource1;
+
+                //dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+                
             }
         }
 

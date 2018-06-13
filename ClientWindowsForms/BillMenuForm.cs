@@ -34,6 +34,8 @@ namespace ClientWindowsForms
                 List<Transaction> transactList = new ResponseHandler().ResponseHandlerListToTransaction(answer);
                 bindingSource1.DataSource = transactList;
                 dataGridView1.DataSource = bindingSource1;
+
+                //dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             }
             
         }
